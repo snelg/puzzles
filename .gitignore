@@ -128,3 +128,7 @@
 /unfinished/slide
 /unfinished/sokoban
 .DS_Store
+Puzzles.xcodeproj/project.xcworkspace/*
+Puzzles.xcodeproj/xcuserdata/*
+svnversion.c
+
