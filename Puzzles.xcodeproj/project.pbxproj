@@ -241,9 +241,30 @@
 		37DDFDBE16F70606007B6287 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDBA16F70606007B6287 /* Default-Portrait.png */; };
 		37DDFDBF16F70606007B6287 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDBB16F70606007B6287 /* Default-Portrait@2x.png */; };
 		37DDFDC116F78FE2007B6287 /* inprogress.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDC016F78FE2007B6287 /* inprogress.png */; };
+		F175DA061FD5BFD8001ADB23 /* salad.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA041FD5BFD8001ADB23 /* salad.c */; };
+		F175DA071FD5BFD8001ADB23 /* rome.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA051FD5BFD8001ADB23 /* rome.c */; };
+		F175DA091FD5BFFD001ADB23 /* clusters.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA081FD5BFFD001ADB23 /* clusters.c */; };
+		F17810D31F8BC690007B8547 /* rect.html in Resources */ = {isa = PBXBuildFile; fileRef = F17810CF1F8BC690007B8547 /* rect.html */; };
+		F17810D41F8BC690007B8547 /* ascent.c in Sources */ = {isa = PBXBuildFile; fileRef = F17810D01F8BC690007B8547 /* ascent.c */; };
+		F17810D51F8BC690007B8547 /* spokes.c in Sources */ = {isa = PBXBuildFile; fileRef = F17810D11F8BC690007B8547 /* spokes.c */; };
+		F17810D61F8BC690007B8547 /* boats.c in Sources */ = {isa = PBXBuildFile; fileRef = F17810D21F8BC690007B8547 /* boats.c */; };
+		F17810DF1F8BD232007B8547 /* boats-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810D71F8BD231007B8547 /* boats-96d24@2x.png */; };
+		F17810E01F8BD232007B8547 /* palisade-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810D81F8BD231007B8547 /* palisade-96d24@2x.png */; };
+		F17810E11F8BD232007B8547 /* boats-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810D91F8BD231007B8547 /* boats-96d24.png */; };
+		F17810E21F8BD232007B8547 /* spokes-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DA1F8BD231007B8547 /* spokes-96d24@2x.png */; };
+		F17810E31F8BD232007B8547 /* palisade-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DB1F8BD232007B8547 /* palisade-96d24.png */; };
+		F17810E41F8BD232007B8547 /* ascent-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DC1F8BD232007B8547 /* ascent-96d24@2x.png */; };
+		F17810E51F8BD232007B8547 /* spokes-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DD1F8BD232007B8547 /* spokes-96d24.png */; };
+		F17810E61F8BD232007B8547 /* ascent-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DE1F8BD232007B8547 /* ascent-96d24.png */; };
 		F1EFAA991DE3A09C008C6D7F /* findloop.c in Sources */ = {isa = PBXBuildFile; fileRef = F1EFAA971DE3A09C008C6D7F /* findloop.c */; };
 		F1EFAA9A1DE3A09C008C6D7F /* palisade.c in Sources */ = {isa = PBXBuildFile; fileRef = F1EFAA981DE3A09C008C6D7F /* palisade.c */; };
 		F1EFAA9C1DE3A88C008C6D7F /* palisade.html in Resources */ = {isa = PBXBuildFile; fileRef = F1EFAA9B1DE3A88C008C6D7F /* palisade.html */; };
+		F1F269C920004348000C4E56 /* salad-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C320004347000C4E56 /* salad-96d24@2x.png */; };
+		F1F269CA20004348000C4E56 /* rome-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C420004347000C4E56 /* rome-96d24@2x.png */; };
+		F1F269CB20004348000C4E56 /* rome-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C520004347000C4E56 /* rome-96d24.png */; };
+		F1F269CC20004348000C4E56 /* clusters-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C620004348000C4E56 /* clusters-96d24.png */; };
+		F1F269CD20004348000C4E56 /* salad-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C720004348000C4E56 /* salad-96d24.png */; };
+		F1F269CE20004348000C4E56 /* clusters-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C820004348000C4E56 /* clusters-96d24@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -514,9 +535,30 @@
 		37DDFDBA16F70606007B6287 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = SOURCE_ROOT; };
 		37DDFDBB16F70606007B6287 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = SOURCE_ROOT; };
 		37DDFDC016F78FE2007B6287 /* inprogress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inprogress.png; sourceTree = SOURCE_ROOT; };
+		F175DA041FD5BFD8001ADB23 /* salad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salad.c; sourceTree = "<group>"; };
+		F175DA051FD5BFD8001ADB23 /* rome.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rome.c; sourceTree = "<group>"; };
+		F175DA081FD5BFFD001ADB23 /* clusters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clusters.c; sourceTree = "<group>"; };
+		F17810CF1F8BC690007B8547 /* rect.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = rect.html; sourceTree = "<group>"; };
+		F17810D01F8BC690007B8547 /* ascent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ascent.c; sourceTree = "<group>"; };
+		F17810D11F8BC690007B8547 /* spokes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = spokes.c; sourceTree = "<group>"; };
+		F17810D21F8BC690007B8547 /* boats.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = boats.c; sourceTree = "<group>"; };
+		F17810D71F8BD231007B8547 /* boats-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "boats-96d24@2x.png"; path = "icons/boats-96d24@2x.png"; sourceTree = "<group>"; };
+		F17810D81F8BD231007B8547 /* palisade-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "palisade-96d24@2x.png"; path = "icons/palisade-96d24@2x.png"; sourceTree = "<group>"; };
+		F17810D91F8BD231007B8547 /* boats-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "boats-96d24.png"; path = "icons/boats-96d24.png"; sourceTree = "<group>"; };
+		F17810DA1F8BD231007B8547 /* spokes-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "spokes-96d24@2x.png"; path = "icons/spokes-96d24@2x.png"; sourceTree = "<group>"; };
+		F17810DB1F8BD232007B8547 /* palisade-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "palisade-96d24.png"; path = "icons/palisade-96d24.png"; sourceTree = "<group>"; };
+		F17810DC1F8BD232007B8547 /* ascent-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ascent-96d24@2x.png"; path = "icons/ascent-96d24@2x.png"; sourceTree = "<group>"; };
+		F17810DD1F8BD232007B8547 /* spokes-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "spokes-96d24.png"; path = "icons/spokes-96d24.png"; sourceTree = "<group>"; };
+		F17810DE1F8BD232007B8547 /* ascent-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ascent-96d24.png"; path = "icons/ascent-96d24.png"; sourceTree = "<group>"; };
 		F1EFAA971DE3A09C008C6D7F /* findloop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = findloop.c; sourceTree = "<group>"; };
 		F1EFAA981DE3A09C008C6D7F /* palisade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = palisade.c; sourceTree = "<group>"; };
 		F1EFAA9B1DE3A88C008C6D7F /* palisade.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = palisade.html; sourceTree = "<group>"; };
+		F1F269C320004347000C4E56 /* salad-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "salad-96d24@2x.png"; path = "icons/salad-96d24@2x.png"; sourceTree = "<group>"; };
+		F1F269C420004347000C4E56 /* rome-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rome-96d24@2x.png"; path = "icons/rome-96d24@2x.png"; sourceTree = "<group>"; };
+		F1F269C520004347000C4E56 /* rome-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rome-96d24.png"; path = "icons/rome-96d24.png"; sourceTree = "<group>"; };
+		F1F269C620004348000C4E56 /* clusters-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clusters-96d24.png"; path = "icons/clusters-96d24.png"; sourceTree = "<group>"; };
+		F1F269C720004348000C4E56 /* salad-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "salad-96d24.png"; path = "icons/salad-96d24.png"; sourceTree = "<group>"; };
+		F1F269C820004348000C4E56 /* clusters-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clusters-96d24@2x.png"; path = "icons/clusters-96d24@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +670,13 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F175DA081FD5BFFD001ADB23 /* clusters.c */,
+				F175DA051FD5BFD8001ADB23 /* rome.c */,
+				F175DA041FD5BFD8001ADB23 /* salad.c */,
+				F17810D01F8BC690007B8547 /* ascent.c */,
+				F17810D21F8BC690007B8547 /* boats.c */,
+				F17810CF1F8BC690007B8547 /* rect.html */,
+				F17810D11F8BC690007B8547 /* spokes.c */,
 				F1EFAA971DE3A09C008C6D7F /* findloop.c */,
 				F1EFAA981DE3A09C008C6D7F /* palisade.c */,
 				3701DD3B16F398EA00896D7D /* help */,
@@ -704,6 +753,20 @@
 		3701DCE116EB16B400896D7D /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				F1F269C620004348000C4E56 /* clusters-96d24.png */,
+				F1F269C820004348000C4E56 /* clusters-96d24@2x.png */,
+				F1F269C520004347000C4E56 /* rome-96d24.png */,
+				F1F269C420004347000C4E56 /* rome-96d24@2x.png */,
+				F1F269C720004348000C4E56 /* salad-96d24.png */,
+				F1F269C320004347000C4E56 /* salad-96d24@2x.png */,
+				F17810DE1F8BD232007B8547 /* ascent-96d24.png */,
+				F17810DC1F8BD232007B8547 /* ascent-96d24@2x.png */,
+				F17810D91F8BD231007B8547 /* boats-96d24.png */,
+				F17810D71F8BD231007B8547 /* boats-96d24@2x.png */,
+				F17810DB1F8BD232007B8547 /* palisade-96d24.png */,
+				F17810D81F8BD231007B8547 /* palisade-96d24@2x.png */,
+				F17810DD1F8BD232007B8547 /* spokes-96d24.png */,
+				F17810DA1F8BD231007B8547 /* spokes-96d24@2x.png */,
 				3786A32D1AA845E200B052ED /* flood-96d24.png */,
 				3786A32E1AA845E200B052ED /* flood-96d24@2x.png */,
 				3786A32F1AA845E200B052ED /* tracks-96d24.png */,
@@ -903,8 +966,13 @@
 		3701DBFD16E730ED00896D7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Greg Hewgill";
+				TargetAttributes = {
+					3701DC0416E730ED00896D7D = {
+						DevelopmentTeam = 4PCMAPG3W2;
+					};
+				};
 			};
 			buildConfigurationList = 3701DC0016E730ED00896D7D /* Build configuration list for PBXProject "Puzzles" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -938,6 +1006,7 @@
 				3701DD0816EB171800896D7D /* cube-96d24.png in Resources */,
 				3701DD0916EB171800896D7D /* dominosa-96d24.png in Resources */,
 				3701DD0A16EB171800896D7D /* fifteen-96d24.png in Resources */,
+				F17810D31F8BC690007B8547 /* rect.html in Resources */,
 				3701DD0B16EB171800896D7D /* filling-96d24.png in Resources */,
 				3786A3311AA845E200B052ED /* flood-96d24.png in Resources */,
 				3701DD0C16EB171800896D7D /* flip-96d24.png in Resources */,
@@ -949,8 +1018,10 @@
 				3701DD1116EB171800896D7D /* lightup-96d24.png in Resources */,
 				37BB830E1803D7300065C058 /* Icon-76.png in Resources */,
 				3701DD1216EB171800896D7D /* loopy-96d24.png in Resources */,
+				F17810E11F8BD232007B8547 /* boats-96d24.png in Resources */,
 				3701DD1316EB171800896D7D /* magnets-96d24.png in Resources */,
 				3701DD1416EB171800896D7D /* map-96d24.png in Resources */,
+				F17810E21F8BD232007B8547 /* spokes-96d24@2x.png in Resources */,
 				3701DD1516EB171800896D7D /* mines-96d24.png in Resources */,
 				3701DD1616EB171800896D7D /* net-96d24.png in Resources */,
 				3701DD1716EB171800896D7D /* netslide-96d24.png in Resources */,
@@ -993,11 +1064,13 @@
 				3701DD7516F3997400896D7D /* lightup.html in Resources */,
 				3701DD7616F3997400896D7D /* loopy.html in Resources */,
 				3701DD7716F3997400896D7D /* magnets.html in Resources */,
+				F17810E41F8BD232007B8547 /* ascent-96d24@2x.png in Resources */,
 				3701DD7816F3997400896D7D /* map.html in Resources */,
 				3701DD7916F3997400896D7D /* mines.html in Resources */,
 				3701DD7A16F3997400896D7D /* net.html in Resources */,
 				3701DD7B16F3997400896D7D /* netslide.html in Resources */,
 				3701DD7C16F3997400896D7D /* pattern.html in Resources */,
+				F1F269CD20004348000C4E56 /* salad-96d24.png in Resources */,
 				3701DD7D16F3997400896D7D /* pearl.html in Resources */,
 				3701DD7E16F3997400896D7D /* pegs.html in Resources */,
 				3701DD7F16F3997400896D7D /* range.html in Resources */,
@@ -1008,8 +1081,10 @@
 				3701DD8316F3997400896D7D /* singles.html in Resources */,
 				3701DD8416F3997400896D7D /* sixteen.html in Resources */,
 				3701DD8516F3997400896D7D /* slant.html in Resources */,
+				F17810E31F8BD232007B8547 /* palisade-96d24.png in Resources */,
 				3701DD8616F3997400896D7D /* solo.html in Resources */,
 				3701DD8716F3997400896D7D /* tents.html in Resources */,
+				F17810E01F8BD232007B8547 /* palisade-96d24@2x.png in Resources */,
 				3701DD8816F3997400896D7D /* towers.html in Resources */,
 				3701DD8916F3997400896D7D /* twiddle.html in Resources */,
 				3701DD8A16F3997400896D7D /* undead.html in Resources */,
@@ -1026,13 +1101,16 @@
 				3782E80416F9B30F0040B261 /* help-back.png in Resources */,
 				3786A3331AA845E200B052ED /* tracks-96d24.png in Resources */,
 				3782E80616F9B6700040B261 /* help-forward.png in Resources */,
+				F1F269CE20004348000C4E56 /* clusters-96d24@2x.png in Resources */,
 				3782E80816F9B9040040B261 /* help-back@2x.png in Resources */,
 				3782E80A16F9B90D0040B261 /* help-forward@2x.png in Resources */,
+				F17810DF1F8BD232007B8547 /* boats-96d24@2x.png in Resources */,
 				3782E82116FD637E0040B261 /* blackbox-96d24@2x.png in Resources */,
 				3782E82216FD637E0040B261 /* bridges-96d24@2x.png in Resources */,
 				3782E82316FD637E0040B261 /* cube-96d24@2x.png in Resources */,
 				3786A3341AA845E200B052ED /* tracks-96d24@2x.png in Resources */,
 				3782E82416FD637E0040B261 /* dominosa-96d24@2x.png in Resources */,
+				F1F269CC20004348000C4E56 /* clusters-96d24.png in Resources */,
 				3782E82516FD637E0040B261 /* fifteen-96d24@2x.png in Resources */,
 				3782E82616FD637E0040B261 /* filling-96d24@2x.png in Resources */,
 				3782E82716FD637E0040B261 /* flip-96d24@2x.png in Resources */,
@@ -1040,11 +1118,13 @@
 				3782E82916FD637E0040B261 /* guess-96d24@2x.png in Resources */,
 				3782E82A16FD637E0040B261 /* inertia-96d24@2x.png in Resources */,
 				3782E82B16FD637E0040B261 /* keen-96d24@2x.png in Resources */,
+				F17810E51F8BD232007B8547 /* spokes-96d24.png in Resources */,
 				3782E82C16FD637E0040B261 /* lightup-96d24@2x.png in Resources */,
 				37BB83071803C1810065C058 /* ios7Default-Landscape@2x.png in Resources */,
 				3782E82D16FD637E0040B261 /* loopy-96d24@2x.png in Resources */,
 				3782E82E16FD637E0040B261 /* magnets-96d24@2x.png in Resources */,
 				3782E82F16FD637E0040B261 /* map-96d24@2x.png in Resources */,
+				F1F269C920004348000C4E56 /* salad-96d24@2x.png in Resources */,
 				3782E83016FD637E0040B261 /* mines-96d24@2x.png in Resources */,
 				3782E83116FD637E0040B261 /* net-96d24@2x.png in Resources */,
 				3782E83216FD637E0040B261 /* netslide-96d24@2x.png in Resources */,
@@ -1054,6 +1134,7 @@
 				3782E83616FD637E0040B261 /* range-96d24@2x.png in Resources */,
 				3782E84516FD63AF0040B261 /* rect-96d24@2x.png in Resources */,
 				3782E84616FD63AF0040B261 /* samegame-96d24@2x.png in Resources */,
+				F1F269CA20004348000C4E56 /* rome-96d24@2x.png in Resources */,
 				3782E84716FD63AF0040B261 /* signpost-96d24@2x.png in Resources */,
 				3782E84816FD63AF0040B261 /* singles-96d24@2x.png in Resources */,
 				3782E84916FD63AF0040B261 /* sixteen-96d24@2x.png in Resources */,
@@ -1061,6 +1142,7 @@
 				37BB830F1803D7300065C058 /* Icon-76@2x.png in Resources */,
 				3782E84B16FD63AF0040B261 /* solo-96d24@2x.png in Resources */,
 				3782E84C16FD63AF0040B261 /* tents-96d24@2x.png in Resources */,
+				F17810E61F8BD232007B8547 /* ascent-96d24.png in Resources */,
 				3782E84D16FD63AF0040B261 /* towers-96d24@2x.png in Resources */,
 				3782E84E16FD63AF0040B261 /* twiddle-96d24@2x.png in Resources */,
 				3782E84F16FD63AF0040B261 /* undead-96d24@2x.png in Resources */,
@@ -1068,6 +1150,7 @@
 				3782E85016FD63AF0040B261 /* unequal-96d24@2x.png in Resources */,
 				3786A3321AA845E200B052ED /* flood-96d24@2x.png in Resources */,
 				3786A32C1AA83C5D00B052ED /* tracks.html in Resources */,
+				F1F269CB20004348000C4E56 /* rome-96d24.png in Resources */,
 				3782E85116FD63AF0040B261 /* unruly-96d24@2x.png in Resources */,
 				3782E85216FD63AF0040B261 /* untangle-96d24@2x.png in Resources */,
 				3782E85716FDAA610040B261 /* Icon-72.png in Resources */,
@@ -1128,13 +1211,16 @@
 				3701DC7816E734A800896D7D /* laydomino.c in Sources */,
 				3701DC7916E734A800896D7D /* lightup.c in Sources */,
 				3701DC7A16E734A800896D7D /* list.c in Sources */,
+				F175DA091FD5BFFD001ADB23 /* clusters.c in Sources */,
 				3701DC7B16E734A800896D7D /* loopgen.c in Sources */,
 				3701DC7C16E734A800896D7D /* loopy.c in Sources */,
 				3701DC7D16E734A800896D7D /* magnets.c in Sources */,
 				3701DC7E16E734A800896D7D /* malloc.c in Sources */,
 				3701DC7F16E734A800896D7D /* map.c in Sources */,
 				3701DC8016E734A800896D7D /* maxflow.c in Sources */,
+				F17810D51F8BC690007B8547 /* spokes.c in Sources */,
 				3701DC8116E734A800896D7D /* midend.c in Sources */,
+				F17810D41F8BC690007B8547 /* ascent.c in Sources */,
 				3701DC8216E734A800896D7D /* mines.c in Sources */,
 				3701DC8316E734A800896D7D /* misc.c in Sources */,
 				3701DC8416E734A800896D7D /* net.c in Sources */,
@@ -1144,7 +1230,9 @@
 				3701DC8816E734A800896D7D /* pearl.c in Sources */,
 				3701DC8916E734A800896D7D /* pegs.c in Sources */,
 				3701DC8A16E734A800896D7D /* penrose.c in Sources */,
+				F175DA071FD5BFD8001ADB23 /* rome.c in Sources */,
 				3701DC8B16E734A800896D7D /* random.c in Sources */,
+				F175DA061FD5BFD8001ADB23 /* salad.c in Sources */,
 				3701DC8C16E734A800896D7D /* range.c in Sources */,
 				3701DC8D16E734A800896D7D /* rect.c in Sources */,
 				3701DC8E16E734A800896D7D /* samegame.c in Sources */,
@@ -1182,6 +1270,7 @@
 				371ADF9D16F431A100A529A2 /* PSTCollectionViewUpdateItem.m in Sources */,
 				3786A3271AA83A9000B052ED /* flood.c in Sources */,
 				371ADF9E16F431A100A529A2 /* PSTGridLayoutInfo.m in Sources */,
+				F17810D61F8BC690007B8547 /* boats.c in Sources */,
 				371ADF9F16F431A100A529A2 /* PSTGridLayoutItem.m in Sources */,
 				371ADFA016F431A100A529A2 /* PSTGridLayoutRow.m in Sources */,
 				371ADFA116F431A100A529A2 /* PSTGridLayoutSection.m in Sources */,
@@ -1210,25 +1299,36 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1242,18 +1342,30 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1264,15 +1376,16 @@
 		3701DC2C16E730ED00896D7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 4PCMAPG3W2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Puzzles-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 					COMBINED,
 				);
 				INFOPLIST_FILE = "Puzzles-Info.plist";
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.byu.snelgpuzzles;
 				PRODUCT_NAME = "$(TARGET_NAME)-dev";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1281,10 +1394,13 @@
 		3701DC2D16E730ED00896D7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 4PCMAPG3W2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Puzzles-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = COMBINED;
 				INFOPLIST_FILE = "Puzzles-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.byu.snelgpuzzles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
