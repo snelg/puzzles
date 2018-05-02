@@ -41,7 +41,6 @@
 		3701DC7D16E734A800896D7D /* magnets.c in Sources */ = {isa = PBXBuildFile; fileRef = 3701DC4516E734A800896D7D /* magnets.c */; };
 		3701DC7E16E734A800896D7D /* malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3701DC4616E734A800896D7D /* malloc.c */; };
 		3701DC7F16E734A800896D7D /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 3701DC4716E734A800896D7D /* map.c */; };
-		3701DC8016E734A800896D7D /* maxflow.c in Sources */ = {isa = PBXBuildFile; fileRef = 3701DC4816E734A800896D7D /* maxflow.c */; };
 		3701DC8116E734A800896D7D /* midend.c in Sources */ = {isa = PBXBuildFile; fileRef = 3701DC4916E734A800896D7D /* midend.c */; };
 		3701DC8216E734A800896D7D /* mines.c in Sources */ = {isa = PBXBuildFile; fileRef = 3701DC4A16E734A800896D7D /* mines.c */; };
 		3701DC8316E734A800896D7D /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3701DC4B16E734A800896D7D /* misc.c */; };
@@ -241,6 +240,7 @@
 		37DDFDBE16F70606007B6287 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDBA16F70606007B6287 /* Default-Portrait.png */; };
 		37DDFDBF16F70606007B6287 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDBB16F70606007B6287 /* Default-Portrait@2x.png */; };
 		37DDFDC116F78FE2007B6287 /* inprogress.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDC016F78FE2007B6287 /* inprogress.png */; };
+		F15D1D36209A1DF800499142 /* matching.c in Sources */ = {isa = PBXBuildFile; fileRef = F15D1D35209A1DF800499142 /* matching.c */; };
 		F175DA061FD5BFD8001ADB23 /* salad.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA041FD5BFD8001ADB23 /* salad.c */; };
 		F175DA071FD5BFD8001ADB23 /* rome.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA051FD5BFD8001ADB23 /* rome.c */; };
 		F175DA091FD5BFFD001ADB23 /* clusters.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA081FD5BFFD001ADB23 /* clusters.c */; };
@@ -306,7 +306,6 @@
 		3701DC4516E734A800896D7D /* magnets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = magnets.c; sourceTree = SOURCE_ROOT; };
 		3701DC4616E734A800896D7D /* malloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = malloc.c; sourceTree = "<group>"; };
 		3701DC4716E734A800896D7D /* map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = map.c; sourceTree = SOURCE_ROOT; };
-		3701DC4816E734A800896D7D /* maxflow.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = maxflow.c; sourceTree = SOURCE_ROOT; };
 		3701DC4916E734A800896D7D /* midend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midend.c; sourceTree = "<group>"; };
 		3701DC4A16E734A800896D7D /* mines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mines.c; sourceTree = "<group>"; };
 		3701DC4B16E734A800896D7D /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
@@ -338,7 +337,6 @@
 		3701DC6516E734A800896D7D /* untangle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = untangle.c; sourceTree = "<group>"; };
 		3701DC9E16E734DD00896D7D /* tree234.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree234.h; sourceTree = SOURCE_ROOT; };
 		3701DC9F16E734F100896D7D /* grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grid.h; sourceTree = SOURCE_ROOT; };
-		3701DCA016E7350900896D7D /* maxflow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxflow.h; sourceTree = SOURCE_ROOT; };
 		3701DCA116E7351C00896D7D /* latin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = latin.h; sourceTree = SOURCE_ROOT; };
 		3701DCA216E7353300896D7D /* penrose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = penrose.h; sourceTree = SOURCE_ROOT; };
 		3701DCA316E7355500896D7D /* loopgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loopgen.h; sourceTree = SOURCE_ROOT; };
@@ -535,6 +533,8 @@
 		37DDFDBA16F70606007B6287 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = SOURCE_ROOT; };
 		37DDFDBB16F70606007B6287 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = SOURCE_ROOT; };
 		37DDFDC016F78FE2007B6287 /* inprogress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inprogress.png; sourceTree = SOURCE_ROOT; };
+		F15D1D34209A1DEB00499142 /* matching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matching.h; sourceTree = "<group>"; };
+		F15D1D35209A1DF800499142 /* matching.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matching.c; sourceTree = "<group>"; };
 		F175DA041FD5BFD8001ADB23 /* salad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salad.c; sourceTree = "<group>"; };
 		F175DA051FD5BFD8001ADB23 /* rome.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rome.c; sourceTree = "<group>"; };
 		F175DA081FD5BFFD001ADB23 /* clusters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clusters.c; sourceTree = "<group>"; };
@@ -670,6 +670,8 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F15D1D35209A1DF800499142 /* matching.c */,
+				F15D1D34209A1DEB00499142 /* matching.h */,
 				F175DA081FD5BFFD001ADB23 /* clusters.c */,
 				F175DA051FD5BFD8001ADB23 /* rome.c */,
 				F175DA041FD5BFD8001ADB23 /* salad.c */,
@@ -685,7 +687,6 @@
 				3701DCA316E7355500896D7D /* loopgen.h */,
 				3701DCA216E7353300896D7D /* penrose.h */,
 				3701DCA116E7351C00896D7D /* latin.h */,
-				3701DCA016E7350900896D7D /* maxflow.h */,
 				3701DC9F16E734F100896D7D /* grid.h */,
 				3701DC9E16E734DD00896D7D /* tree234.h */,
 				3701DC2F16E734A800896D7D /* blackbox.c */,
@@ -714,7 +715,6 @@
 				3701DC4516E734A800896D7D /* magnets.c */,
 				3701DC4616E734A800896D7D /* malloc.c */,
 				3701DC4716E734A800896D7D /* map.c */,
-				3701DC4816E734A800896D7D /* maxflow.c */,
 				3701DC4916E734A800896D7D /* midend.c */,
 				3701DC4A16E734A800896D7D /* mines.c */,
 				3701DC4B16E734A800896D7D /* misc.c */,
@@ -1217,7 +1217,6 @@
 				3701DC7D16E734A800896D7D /* magnets.c in Sources */,
 				3701DC7E16E734A800896D7D /* malloc.c in Sources */,
 				3701DC7F16E734A800896D7D /* map.c in Sources */,
-				3701DC8016E734A800896D7D /* maxflow.c in Sources */,
 				F17810D51F8BC690007B8547 /* spokes.c in Sources */,
 				3701DC8116E734A800896D7D /* midend.c in Sources */,
 				F17810D41F8BC690007B8547 /* ascent.c in Sources */,
@@ -1242,6 +1241,7 @@
 				3701DC9216E734A800896D7D /* slant.c in Sources */,
 				3701DC9316E734A800896D7D /* solo.c in Sources */,
 				3701DC9416E734A800896D7D /* tdq.c in Sources */,
+				F15D1D36209A1DF800499142 /* matching.c in Sources */,
 				3701DC9516E734A800896D7D /* tents.c in Sources */,
 				3701DC9616E734A800896D7D /* towers.c in Sources */,
 				3701DC9716E734A800896D7D /* tree234.c in Sources */,
