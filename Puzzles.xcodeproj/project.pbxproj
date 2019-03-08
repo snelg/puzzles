@@ -240,6 +240,10 @@
 		37DDFDBE16F70606007B6287 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDBA16F70606007B6287 /* Default-Portrait.png */; };
 		37DDFDBF16F70606007B6287 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDBB16F70606007B6287 /* Default-Portrait@2x.png */; };
 		37DDFDC116F78FE2007B6287 /* inprogress.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDC016F78FE2007B6287 /* inprogress.png */; };
+		F1189C452232F99E0036C0CE /* abcd.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C442232F99E0036C0CE /* abcd.c */; };
+		F1189C472232F9B40036C0CE /* crossing.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C462232F9B40036C0CE /* crossing.c */; };
+		F1189C492232F9C00036C0CE /* mathrax.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C482232F9C00036C0CE /* mathrax.c */; };
+		F1189C4B2232F9CB0036C0CE /* seismic.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C4A2232F9CB0036C0CE /* seismic.c */; };
 		F15D1D36209A1DF800499142 /* matching.c in Sources */ = {isa = PBXBuildFile; fileRef = F15D1D35209A1DF800499142 /* matching.c */; };
 		F175DA061FD5BFD8001ADB23 /* salad.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA041FD5BFD8001ADB23 /* salad.c */; };
 		F175DA071FD5BFD8001ADB23 /* rome.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA051FD5BFD8001ADB23 /* rome.c */; };
@@ -533,6 +537,10 @@
 		37DDFDBA16F70606007B6287 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = SOURCE_ROOT; };
 		37DDFDBB16F70606007B6287 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = SOURCE_ROOT; };
 		37DDFDC016F78FE2007B6287 /* inprogress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inprogress.png; sourceTree = SOURCE_ROOT; };
+		F1189C442232F99E0036C0CE /* abcd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abcd.c; sourceTree = "<group>"; };
+		F1189C462232F9B40036C0CE /* crossing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crossing.c; sourceTree = "<group>"; };
+		F1189C482232F9C00036C0CE /* mathrax.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mathrax.c; sourceTree = "<group>"; };
+		F1189C4A2232F9CB0036C0CE /* seismic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = seismic.c; sourceTree = "<group>"; };
 		F15D1D34209A1DEB00499142 /* matching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matching.h; sourceTree = "<group>"; };
 		F15D1D35209A1DF800499142 /* matching.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matching.c; sourceTree = "<group>"; };
 		F175DA041FD5BFD8001ADB23 /* salad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salad.c; sourceTree = "<group>"; };
@@ -670,6 +678,10 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F1189C4A2232F9CB0036C0CE /* seismic.c */,
+				F1189C482232F9C00036C0CE /* mathrax.c */,
+				F1189C462232F9B40036C0CE /* crossing.c */,
+				F1189C442232F99E0036C0CE /* abcd.c */,
 				F15D1D35209A1DF800499142 /* matching.c */,
 				F15D1D34209A1DEB00499142 /* matching.h */,
 				F175DA081FD5BFFD001ADB23 /* clusters.c */,
@@ -966,7 +978,7 @@
 		3701DBFD16E730ED00896D7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Greg Hewgill";
 				TargetAttributes = {
 					3701DC0416E730ED00896D7D = {
@@ -1210,8 +1222,10 @@
 				3701DC7716E734A800896D7D /* latin.c in Sources */,
 				3701DC7816E734A800896D7D /* laydomino.c in Sources */,
 				3701DC7916E734A800896D7D /* lightup.c in Sources */,
+				F1189C4B2232F9CB0036C0CE /* seismic.c in Sources */,
 				3701DC7A16E734A800896D7D /* list.c in Sources */,
 				F175DA091FD5BFFD001ADB23 /* clusters.c in Sources */,
+				F1189C472232F9B40036C0CE /* crossing.c in Sources */,
 				3701DC7B16E734A800896D7D /* loopgen.c in Sources */,
 				3701DC7C16E734A800896D7D /* loopy.c in Sources */,
 				3701DC7D16E734A800896D7D /* magnets.c in Sources */,
@@ -1222,6 +1236,8 @@
 				F17810D41F8BC690007B8547 /* ascent.c in Sources */,
 				3701DC8216E734A800896D7D /* mines.c in Sources */,
 				3701DC8316E734A800896D7D /* misc.c in Sources */,
+				F1189C492232F9C00036C0CE /* mathrax.c in Sources */,
+				F1189C452232F99E0036C0CE /* abcd.c in Sources */,
 				3701DC8416E734A800896D7D /* net.c in Sources */,
 				3701DC8516E734A800896D7D /* netslide.c in Sources */,
 				3701DC8616E734A800896D7D /* nullgame.c in Sources */,
@@ -1299,12 +1315,20 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1342,12 +1366,20 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
