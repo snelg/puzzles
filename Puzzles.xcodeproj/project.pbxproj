@@ -244,6 +244,15 @@
 		F1189C472232F9B40036C0CE /* crossing.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C462232F9B40036C0CE /* crossing.c */; };
 		F1189C492232F9C00036C0CE /* mathrax.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C482232F9C00036C0CE /* mathrax.c */; };
 		F1189C4B2232F9CB0036C0CE /* seismic.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C4A2232F9CB0036C0CE /* seismic.c */; };
+		F119658A2233205C006AC204 /* mathrax-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965822233205B006AC204 /* mathrax-96d24.png */; };
+		F119658B2233205C006AC204 /* abcd-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965832233205B006AC204 /* abcd-96d24@2x.png */; };
+		F119658C2233205C006AC204 /* seismic-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965842233205B006AC204 /* seismic-96d24.png */; };
+		F119658D2233205C006AC204 /* abcd-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965852233205B006AC204 /* abcd-96d24.png */; };
+		F119658E2233205C006AC204 /* crossing-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965862233205B006AC204 /* crossing-96d24@2x.png */; };
+		F119658F2233205C006AC204 /* crossing-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965872233205B006AC204 /* crossing-96d24.png */; };
+		F11965902233205C006AC204 /* mathrax-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965882233205C006AC204 /* mathrax-96d24@2x.png */; };
+		F11965912233205C006AC204 /* seismic-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965892233205C006AC204 /* seismic-96d24@2x.png */; };
+		F149196A2280E28500C21C88 /* sort.c in Sources */ = {isa = PBXBuildFile; fileRef = F14919692280E28500C21C88 /* sort.c */; };
 		F15D1D36209A1DF800499142 /* matching.c in Sources */ = {isa = PBXBuildFile; fileRef = F15D1D35209A1DF800499142 /* matching.c */; };
 		F175DA061FD5BFD8001ADB23 /* salad.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA041FD5BFD8001ADB23 /* salad.c */; };
 		F175DA071FD5BFD8001ADB23 /* rome.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA051FD5BFD8001ADB23 /* rome.c */; };
@@ -541,6 +550,15 @@
 		F1189C462232F9B40036C0CE /* crossing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crossing.c; sourceTree = "<group>"; };
 		F1189C482232F9C00036C0CE /* mathrax.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mathrax.c; sourceTree = "<group>"; };
 		F1189C4A2232F9CB0036C0CE /* seismic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = seismic.c; sourceTree = "<group>"; };
+		F11965822233205B006AC204 /* mathrax-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mathrax-96d24.png"; path = "icons/mathrax-96d24.png"; sourceTree = "<group>"; };
+		F11965832233205B006AC204 /* abcd-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "abcd-96d24@2x.png"; path = "icons/abcd-96d24@2x.png"; sourceTree = "<group>"; };
+		F11965842233205B006AC204 /* seismic-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "seismic-96d24.png"; path = "icons/seismic-96d24.png"; sourceTree = "<group>"; };
+		F11965852233205B006AC204 /* abcd-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "abcd-96d24.png"; path = "icons/abcd-96d24.png"; sourceTree = "<group>"; };
+		F11965862233205B006AC204 /* crossing-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossing-96d24@2x.png"; path = "icons/crossing-96d24@2x.png"; sourceTree = "<group>"; };
+		F11965872233205B006AC204 /* crossing-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossing-96d24.png"; path = "icons/crossing-96d24.png"; sourceTree = "<group>"; };
+		F11965882233205C006AC204 /* mathrax-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mathrax-96d24@2x.png"; path = "icons/mathrax-96d24@2x.png"; sourceTree = "<group>"; };
+		F11965892233205C006AC204 /* seismic-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "seismic-96d24@2x.png"; path = "icons/seismic-96d24@2x.png"; sourceTree = "<group>"; };
+		F14919692280E28500C21C88 /* sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort.c; sourceTree = "<group>"; };
 		F15D1D34209A1DEB00499142 /* matching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matching.h; sourceTree = "<group>"; };
 		F15D1D35209A1DF800499142 /* matching.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matching.c; sourceTree = "<group>"; };
 		F175DA041FD5BFD8001ADB23 /* salad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salad.c; sourceTree = "<group>"; };
@@ -678,6 +696,7 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F14919692280E28500C21C88 /* sort.c */,
 				F1189C4A2232F9CB0036C0CE /* seismic.c */,
 				F1189C482232F9C00036C0CE /* mathrax.c */,
 				F1189C462232F9B40036C0CE /* crossing.c */,
@@ -765,6 +784,14 @@
 		3701DCE116EB16B400896D7D /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				F11965852233205B006AC204 /* abcd-96d24.png */,
+				F11965832233205B006AC204 /* abcd-96d24@2x.png */,
+				F11965872233205B006AC204 /* crossing-96d24.png */,
+				F11965862233205B006AC204 /* crossing-96d24@2x.png */,
+				F11965822233205B006AC204 /* mathrax-96d24.png */,
+				F11965882233205C006AC204 /* mathrax-96d24@2x.png */,
+				F11965842233205B006AC204 /* seismic-96d24.png */,
+				F11965892233205C006AC204 /* seismic-96d24@2x.png */,
 				F1F269C620004348000C4E56 /* clusters-96d24.png */,
 				F1F269C820004348000C4E56 /* clusters-96d24@2x.png */,
 				F1F269C520004347000C4E56 /* rome-96d24.png */,
@@ -1030,21 +1057,25 @@
 				3701DD1116EB171800896D7D /* lightup-96d24.png in Resources */,
 				37BB830E1803D7300065C058 /* Icon-76.png in Resources */,
 				3701DD1216EB171800896D7D /* loopy-96d24.png in Resources */,
+				F11965902233205C006AC204 /* mathrax-96d24@2x.png in Resources */,
 				F17810E11F8BD232007B8547 /* boats-96d24.png in Resources */,
 				3701DD1316EB171800896D7D /* magnets-96d24.png in Resources */,
 				3701DD1416EB171800896D7D /* map-96d24.png in Resources */,
 				F17810E21F8BD232007B8547 /* spokes-96d24@2x.png in Resources */,
 				3701DD1516EB171800896D7D /* mines-96d24.png in Resources */,
+				F11965912233205C006AC204 /* seismic-96d24@2x.png in Resources */,
 				3701DD1616EB171800896D7D /* net-96d24.png in Resources */,
 				3701DD1716EB171800896D7D /* netslide-96d24.png in Resources */,
 				3701DD1816EB171800896D7D /* pattern-96d24.png in Resources */,
 				3701DD1916EB171800896D7D /* pearl-96d24.png in Resources */,
 				3701DD1A16EB171800896D7D /* pegs-96d24.png in Resources */,
 				3701DD1B16EB171800896D7D /* range-96d24.png in Resources */,
+				F119658C2233205C006AC204 /* seismic-96d24.png in Resources */,
 				3701DD1C16EB171800896D7D /* rect-96d24.png in Resources */,
 				3701DD1D16EB171800896D7D /* samegame-96d24.png in Resources */,
 				3701DD1E16EB171800896D7D /* signpost-96d24.png in Resources */,
 				3701DD1F16EB171800896D7D /* singles-96d24.png in Resources */,
+				F119658E2233205C006AC204 /* crossing-96d24@2x.png in Resources */,
 				3701DD2016EB171800896D7D /* sixteen-96d24.png in Resources */,
 				3786A32B1AA83C5D00B052ED /* flood.html in Resources */,
 				3701DD2116EB171800896D7D /* slant-96d24.png in Resources */,
@@ -1086,6 +1117,7 @@
 				3701DD7D16F3997400896D7D /* pearl.html in Resources */,
 				3701DD7E16F3997400896D7D /* pegs.html in Resources */,
 				3701DD7F16F3997400896D7D /* range.html in Resources */,
+				F119658A2233205C006AC204 /* mathrax-96d24.png in Resources */,
 				3701DD8016F3997400896D7D /* rectangles.html in Resources */,
 				37BB83091803C1810065C058 /* ios7Default-Portrait@2x.png in Resources */,
 				3701DD8116F3997400896D7D /* samegame.html in Resources */,
@@ -1112,6 +1144,7 @@
 				37DDFDC116F78FE2007B6287 /* inprogress.png in Resources */,
 				3782E80416F9B30F0040B261 /* help-back.png in Resources */,
 				3786A3331AA845E200B052ED /* tracks-96d24.png in Resources */,
+				F119658F2233205C006AC204 /* crossing-96d24.png in Resources */,
 				3782E80616F9B6700040B261 /* help-forward.png in Resources */,
 				F1F269CE20004348000C4E56 /* clusters-96d24@2x.png in Resources */,
 				3782E80816F9B9040040B261 /* help-back@2x.png in Resources */,
@@ -1143,6 +1176,7 @@
 				3782E83316FD637E0040B261 /* pattern-96d24@2x.png in Resources */,
 				3782E83416FD637E0040B261 /* pearl-96d24@2x.png in Resources */,
 				3782E83516FD637E0040B261 /* pegs-96d24@2x.png in Resources */,
+				F119658D2233205C006AC204 /* abcd-96d24.png in Resources */,
 				3782E83616FD637E0040B261 /* range-96d24@2x.png in Resources */,
 				3782E84516FD63AF0040B261 /* rect-96d24@2x.png in Resources */,
 				3782E84616FD63AF0040B261 /* samegame-96d24@2x.png in Resources */,
@@ -1171,6 +1205,7 @@
 				37BB830A1803C1810065C058 /* ios7Default@2x.png in Resources */,
 				3782E85A16FDAA610040B261 /* Icon@2x.png in Resources */,
 				37BB83061803C1810065C058 /* ios7Default-Landscape.png in Resources */,
+				F119658B2233205C006AC204 /* abcd-96d24@2x.png in Resources */,
 				3782E85F16FEBFA20040B261 /* inprogress@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1262,6 +1297,7 @@
 				3701DC9616E734A800896D7D /* towers.c in Sources */,
 				3701DC9716E734A800896D7D /* tree234.c in Sources */,
 				3701DC9816E734A800896D7D /* twiddle.c in Sources */,
+				F149196A2280E28500C21C88 /* sort.c in Sources */,
 				3701DC9916E734A800896D7D /* undead.c in Sources */,
 				3701DC9A16E734A800896D7D /* unequal.c in Sources */,
 				3701DC9B16E734A800896D7D /* unruly.c in Sources */,
