@@ -49,6 +49,7 @@
     A(slant) \
     A(solo) \
     A(spokes) \
+    A(sticks) \
     A(tents) \
     A(towers) \
     A(tracks) \
