@@ -216,6 +216,8 @@
 		37DDFDB516F58765007B6287 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDB416F58765007B6287 /* style.css */; };
 		37DDFDB716F5A879007B6287 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDB616F5A879007B6287 /* help.html */; };
 		37DDFDC116F78FE2007B6287 /* inprogress.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DDFDC016F78FE2007B6287 /* inprogress.png */; };
+		37F367892513250000E35EFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37F367882513250000E35EFD /* Images.xcassets */; };
+		37F3678B251603D900E35EFD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F3678A251603D900E35EFD /* WebKit.framework */; };
 		F1189C452232F99E0036C0CE /* abcd.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C442232F99E0036C0CE /* abcd.c */; };
 		F1189C472232F9B40036C0CE /* crossing.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C462232F9B40036C0CE /* crossing.c */; };
 		F1189C492232F9C00036C0CE /* mathrax.c in Sources */ = {isa = PBXBuildFile; fileRef = F1189C482232F9C00036C0CE /* mathrax.c */; };
@@ -257,8 +259,6 @@
 		F1F269CC20004348000C4E56 /* clusters-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C620004348000C4E56 /* clusters-96d24.png */; };
 		F1F269CD20004348000C4E56 /* salad-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C720004348000C4E56 /* salad-96d24.png */; };
 		F1F269CE20004348000C4E56 /* clusters-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C820004348000C4E56 /* clusters-96d24@2x.png */; };
-		37F367892513250000E35EFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37F367882513250000E35EFD /* Images.xcassets */; };
-		37F3678B251603D900E35EFD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F3678A251603D900E35EFD /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -488,6 +488,8 @@
 		37DDFDB416F58765007B6287 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		37DDFDB616F5A879007B6287 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		37DDFDC016F78FE2007B6287 /* inprogress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inprogress.png; sourceTree = SOURCE_ROOT; };
+		37F367882513250000E35EFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		37F3678A251603D900E35EFD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F1189C442232F99E0036C0CE /* abcd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = abcd.c; sourceTree = "<group>"; };
 		F1189C462232F9B40036C0CE /* crossing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crossing.c; sourceTree = "<group>"; };
 		F1189C482232F9C00036C0CE /* mathrax.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mathrax.c; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 		F11965872233205B006AC204 /* crossing-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossing-96d24.png"; path = "icons/crossing-96d24.png"; sourceTree = "<group>"; };
 		F11965882233205C006AC204 /* mathrax-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mathrax-96d24@2x.png"; path = "icons/mathrax-96d24@2x.png"; sourceTree = "<group>"; };
 		F11965892233205C006AC204 /* seismic-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "seismic-96d24@2x.png"; path = "icons/seismic-96d24@2x.png"; sourceTree = "<group>"; };
+		F148CEBD2629315100CA17E1 /* generated-games.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "generated-games.h"; sourceTree = SOURCE_ROOT; };
 		F14919692280E28500C21C88 /* sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort.c; sourceTree = "<group>"; };
 		F15D1D34209A1DEB00499142 /* matching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matching.h; sourceTree = "<group>"; };
 		F15D1D35209A1DF800499142 /* matching.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matching.c; sourceTree = "<group>"; };
@@ -530,8 +533,6 @@
 		F1F269C620004348000C4E56 /* clusters-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clusters-96d24.png"; path = "icons/clusters-96d24.png"; sourceTree = "<group>"; };
 		F1F269C720004348000C4E56 /* salad-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "salad-96d24.png"; path = "icons/salad-96d24.png"; sourceTree = "<group>"; };
 		F1F269C820004348000C4E56 /* clusters-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clusters-96d24@2x.png"; path = "icons/clusters-96d24@2x.png"; sourceTree = "<group>"; };
-		37F367882513250000E35EFD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		37F3678A251603D900E35EFD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -592,6 +593,7 @@
 				3701DCAA16E9D93F00896D7D /* GameListViewController.m */,
 				3701DCAC16E9DBC000896D7D /* GameViewController.h */,
 				3701DCAD16E9DBC100896D7D /* GameViewController.m */,
+				F148CEBD2629315100CA17E1 /* generated-games.h */,
 				3701DCA616E85D5D00896D7D /* GameView.h */,
 				3701DCA716E85D5D00896D7D /* GameView.m */,
 				3701DD2D16EDBC9E00896D7D /* GameTypeController.h */,
@@ -915,7 +917,7 @@
 				ORGANIZATIONNAME = "Greg Hewgill";
 				TargetAttributes = {
 					3701DC0416E730ED00896D7D = {
-						DevelopmentTeam = M55PJ83885;
+						DevelopmentTeam = 4PCMAPG3W2;
 					};
 				};
 			};
@@ -1334,9 +1336,9 @@
 		3701DC2C16E730ED00896D7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 4PCMAPG3W2;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1.3.2.1;
+				DEVELOPMENT_TEAM = 4PCMAPG3W2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Puzzles-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1356,17 +1358,17 @@
 		3701DC2D16E730ED00896D7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 4PCMAPG3W2;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1.3.2.1;
+				DEVELOPMENT_TEAM = 4PCMAPG3W2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Puzzles-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = COMBINED;
 				INFOPLIST_FILE = "Puzzles-Info.plist";
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.byu.snelgpuzzles;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MARKETING_VERSION = 1.3.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.byu.snelgpuzzles;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
