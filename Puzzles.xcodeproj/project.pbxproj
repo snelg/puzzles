@@ -259,6 +259,9 @@
 		F1F269CC20004348000C4E56 /* clusters-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C620004348000C4E56 /* clusters-96d24.png */; };
 		F1F269CD20004348000C4E56 /* salad-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C720004348000C4E56 /* salad-96d24.png */; };
 		F1F269CE20004348000C4E56 /* clusters-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F269C820004348000C4E56 /* clusters-96d24@2x.png */; };
+		F1F6F9952638F95D00BB7BB0 /* mosaic.c in Sources */ = {isa = PBXBuildFile; fileRef = F1F6F9942638F95D00BB7BB0 /* mosaic.c */; };
+		F1F6F9992638F9E500BB7BB0 /* mosaic-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F6F9972638F9E500BB7BB0 /* mosaic-96d24.png */; };
+		F1F6F99A2638F9E500BB7BB0 /* mosaic-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F6F9982638F9E500BB7BB0 /* mosaic-96d24@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -533,6 +536,9 @@
 		F1F269C620004348000C4E56 /* clusters-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clusters-96d24.png"; path = "icons/clusters-96d24.png"; sourceTree = "<group>"; };
 		F1F269C720004348000C4E56 /* salad-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "salad-96d24.png"; path = "icons/salad-96d24.png"; sourceTree = "<group>"; };
 		F1F269C820004348000C4E56 /* clusters-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clusters-96d24@2x.png"; path = "icons/clusters-96d24@2x.png"; sourceTree = "<group>"; };
+		F1F6F9942638F95D00BB7BB0 /* mosaic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mosaic.c; sourceTree = "<group>"; };
+		F1F6F9972638F9E500BB7BB0 /* mosaic-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mosaic-96d24.png"; path = "icons/mosaic-96d24.png"; sourceTree = "<group>"; };
+		F1F6F9982638F9E500BB7BB0 /* mosaic-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mosaic-96d24@2x.png"; path = "icons/mosaic-96d24@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -636,6 +642,7 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F1F6F9942638F95D00BB7BB0 /* mosaic.c */,
 				F14919692280E28500C21C88 /* sort.c */,
 				F1189C4A2232F9CB0036C0CE /* seismic.c */,
 				F1189C482232F9C00036C0CE /* mathrax.c */,
@@ -650,6 +657,7 @@
 				F17810D21F8BC690007B8547 /* boats.c */,
 				F17810CF1F8BC690007B8547 /* rect.html */,
 				F17810D11F8BC690007B8547 /* spokes.c */,
+				F1BD571225C9334500F15F78 /* sticks.c */,
 				F1EFAA971DE3A09C008C6D7F /* findloop.c */,
 				F1EFAA981DE3A09C008C6D7F /* palisade.c */,
 				3701DD3B16F398EA00896D7D /* help */,
@@ -724,7 +732,8 @@
 		3701DCE116EB16B400896D7D /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				F1BD571225C9334500F15F78 /* sticks.c */,
+				F1F6F9972638F9E500BB7BB0 /* mosaic-96d24.png */,
+				F1F6F9982638F9E500BB7BB0 /* mosaic-96d24@2x.png */,
 				F1BD570E25C9331B00F15F78 /* sticks-96d24.png */,
 				F1BD570D25C9331B00F15F78 /* sticks-96d24@2x.png */,
 				F11965852233205B006AC204 /* abcd-96d24.png */,
@@ -1008,6 +1017,7 @@
 				3701DD6E16F3997400896D7D /* galaxies.html in Resources */,
 				3701DD6F16F3997400896D7D /* guess.html in Resources */,
 				3701DD7016F3997400896D7D /* index.html in Resources */,
+				F1F6F9992638F9E500BB7BB0 /* mosaic-96d24.png in Resources */,
 				F1EFAA9C1DE3A88C008C6D7F /* palisade.html in Resources */,
 				3701DD7116F3997400896D7D /* inertia.html in Resources */,
 				3701DD7216F3997400896D7D /* intro.html in Resources */,
@@ -1076,6 +1086,7 @@
 				F1F269C920004348000C4E56 /* salad-96d24@2x.png in Resources */,
 				3782E83016FD637E0040B261 /* mines-96d24@2x.png in Resources */,
 				3782E83116FD637E0040B261 /* net-96d24@2x.png in Resources */,
+				F1F6F99A2638F9E500BB7BB0 /* mosaic-96d24@2x.png in Resources */,
 				3782E83216FD637E0040B261 /* netslide-96d24@2x.png in Resources */,
 				3782E83316FD637E0040B261 /* pattern-96d24@2x.png in Resources */,
 				3782E83416FD637E0040B261 /* pearl-96d24@2x.png in Resources */,
@@ -1215,6 +1226,7 @@
 				3701DD3A16F3959400896D7D /* GameHelpController.m in Sources */,
 				F1EFAA991DE3A09C008C6D7F /* findloop.c in Sources */,
 				3786A3271AA83A9000B052ED /* flood.c in Sources */,
+				F1F6F9952638F95D00BB7BB0 /* mosaic.c in Sources */,
 				F17810D61F8BC690007B8547 /* boats.c in Sources */,
 				3782E85D16FE488F0040B261 /* svnversion.c in Sources */,
 			);
