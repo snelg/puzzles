@@ -232,6 +232,9 @@
 		F11965912233205C006AC204 /* seismic-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965892233205C006AC204 /* seismic-96d24@2x.png */; };
 		F149196A2280E28500C21C88 /* sort.c in Sources */ = {isa = PBXBuildFile; fileRef = F14919692280E28500C21C88 /* sort.c */; };
 		F15D1D36209A1DF800499142 /* matching.c in Sources */ = {isa = PBXBuildFile; fileRef = F15D1D35209A1DF800499142 /* matching.c */; };
+		F1729A172724FD6B00F0BE01 /* bricks-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1729A152724FD6B00F0BE01 /* bricks-96d24.png */; };
+		F1729A182724FD6B00F0BE01 /* bricks-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1729A162724FD6B00F0BE01 /* bricks-96d24@2x.png */; };
+		F1729A1A2724FDF000F0BE01 /* bricks.c in Sources */ = {isa = PBXBuildFile; fileRef = F1729A192724FDF000F0BE01 /* bricks.c */; };
 		F175DA061FD5BFD8001ADB23 /* salad.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA041FD5BFD8001ADB23 /* salad.c */; };
 		F175DA071FD5BFD8001ADB23 /* rome.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA051FD5BFD8001ADB23 /* rome.c */; };
 		F175DA091FD5BFFD001ADB23 /* clusters.c in Sources */ = {isa = PBXBuildFile; fileRef = F175DA081FD5BFFD001ADB23 /* clusters.c */; };
@@ -509,6 +512,9 @@
 		F14919692280E28500C21C88 /* sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort.c; sourceTree = "<group>"; };
 		F15D1D34209A1DEB00499142 /* matching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matching.h; sourceTree = "<group>"; };
 		F15D1D35209A1DF800499142 /* matching.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matching.c; sourceTree = "<group>"; };
+		F1729A152724FD6B00F0BE01 /* bricks-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bricks-96d24.png"; path = "icons/bricks-96d24.png"; sourceTree = "<group>"; };
+		F1729A162724FD6B00F0BE01 /* bricks-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bricks-96d24@2x.png"; path = "icons/bricks-96d24@2x.png"; sourceTree = "<group>"; };
+		F1729A192724FDF000F0BE01 /* bricks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bricks.c; sourceTree = "<group>"; };
 		F175DA041FD5BFD8001ADB23 /* salad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = salad.c; sourceTree = "<group>"; };
 		F175DA051FD5BFD8001ADB23 /* rome.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rome.c; sourceTree = "<group>"; };
 		F175DA081FD5BFFD001ADB23 /* clusters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clusters.c; sourceTree = "<group>"; };
@@ -642,6 +648,7 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F1729A192724FDF000F0BE01 /* bricks.c */,
 				F1F6F9942638F95D00BB7BB0 /* mosaic.c */,
 				F14919692280E28500C21C88 /* sort.c */,
 				F1189C4A2232F9CB0036C0CE /* seismic.c */,
@@ -732,6 +739,8 @@
 		3701DCE116EB16B400896D7D /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				F1729A152724FD6B00F0BE01 /* bricks-96d24.png */,
+				F1729A162724FD6B00F0BE01 /* bricks-96d24@2x.png */,
 				F1F6F9972638F9E500BB7BB0 /* mosaic-96d24.png */,
 				F1F6F9982638F9E500BB7BB0 /* mosaic-96d24@2x.png */,
 				F1BD570E25C9331B00F15F78 /* sticks-96d24.png */,
@@ -958,6 +967,7 @@
 				3701DD0616EB171800896D7D /* blackbox-96d24.png in Resources */,
 				3701DD0716EB171800896D7D /* bridges-96d24.png in Resources */,
 				3701DD0816EB171800896D7D /* cube-96d24.png in Resources */,
+				F1729A182724FD6B00F0BE01 /* bricks-96d24@2x.png in Resources */,
 				3701DD0916EB171800896D7D /* dominosa-96d24.png in Resources */,
 				3701DD0A16EB171800896D7D /* fifteen-96d24.png in Resources */,
 				F17810D31F8BC690007B8547 /* rect.html in Resources */,
@@ -969,6 +979,7 @@
 				3701DD0D16EB171800896D7D /* galaxies-96d24.png in Resources */,
 				3701DD0E16EB171800896D7D /* guess-96d24.png in Resources */,
 				37BB83101803D7300065C058 /* Icon-120.png in Resources */,
+				F1729A172724FD6B00F0BE01 /* bricks-96d24.png in Resources */,
 				3701DD0F16EB171800896D7D /* inertia-96d24.png in Resources */,
 				3701DD1016EB171800896D7D /* keen-96d24.png in Resources */,
 				3701DD1116EB171800896D7D /* lightup-96d24.png in Resources */,
@@ -1202,6 +1213,7 @@
 				3701DC8E16E734A800896D7D /* samegame.c in Sources */,
 				3701DC8F16E734A800896D7D /* signpost.c in Sources */,
 				3701DC9016E734A800896D7D /* singles.c in Sources */,
+				F1729A1A2724FDF000F0BE01 /* bricks.c in Sources */,
 				3701DC9116E734A800896D7D /* sixteen.c in Sources */,
 				3701DC9216E734A800896D7D /* slant.c in Sources */,
 				3701DC9316E734A800896D7D /* solo.c in Sources */,
