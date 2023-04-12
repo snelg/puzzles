@@ -1118,7 +1118,7 @@ static void game_print(drawing *dr, const game_state *state, int tilesize)
 #endif
 
 const struct game thegame = {
-	"Clusters", NULL, NULL,
+	"Clusters", "games.clusters", "clusters",
 	default_params,
 	game_fetch_preset, NULL,
 	decode_params,

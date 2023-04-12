@@ -1621,7 +1621,7 @@ static void game_print(drawing *dr, const game_state *state, int tilesize)
 #endif
 
 const struct game thegame = {
-	"Bricks", NULL, NULL,
+	"Bricks", "games.bricks", "bricks",
 	default_params,
 	NULL, game_preset_menu,
 	decode_params,
