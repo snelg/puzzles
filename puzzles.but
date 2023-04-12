@@ -3430,6 +3430,79 @@ These parameters are available from the \q{Custom...} option on the
 eliminate unnecessary clues on the board. This slows down generation,
 so it's not recommended for boards larger than, say, 30\times\.30.
 
+\C{abcd} \i{ABCD}
+
+\cfg{winhelp-topic}{games.abcd}
+
+Place letters according to numbers in the border. Identical letters
+cannot touch.
+
+\C{ascent} \i{Ascent}
+
+\cfg{winhelp-topic}{games.ascent}
+
+Place each number once to create a path.
+
+\C{boats} \i{Boats}
+
+\cfg{winhelp-topic}{games.boats}
+
+Find the fleet in the grid.
+
+\C{bricks} \i{Bricks}
+
+\cfg{winhelp-topic}{games.bricks}
+
+Shade several cells in the hexagonal grid while making sure each cell has another shaded cell below it.
+
+\C{clusters} \i{Clusters}
+
+\cfg{winhelp-topic}{games.clusters}
+
+Fill in the grid with red and blue clusters, with all dead ends given.
+
+\C{crossing} \i{Crossing}
+
+\cfg{winhelp-topic}{games.crossing}
+
+Number crossword.
+
+\C{mathrax} \i{Mathrax}
+
+\cfg{winhelp-topic}{games.mathrax}
+
+Place each number according to the arithmetic clues.
+
+\C{rome} \i{Rome}
+
+\cfg{winhelp-topic}{games.rome}
+
+Fill the grid with arrows leading to a goal.
+
+\C{salad} \i{Salad}
+
+\cfg{winhelp-topic}{games.salad}
+
+Place each character once in every row and column. Some squares remain empty.
+
+\C{seismic} \i{Seismic}
+
+\cfg{winhelp-topic}{games.seismic}
+
+Place numbers in each area, keeping N spaces between number N.
+
+\C{spokes} \i{Spokes}
+
+\cfg{winhelp-topic}{games.spokes}
+
+Connect all hubs using horizontal, vertical and diagonal lines.
+
+\C{sticks} \i{Sticks}
+
+\cfg{winhelp-topic}{games.sticks}
+
+Fill in the grid with horizontal and vertical line segments.
+
 \A{licence} \I{MIT licence}\ii{Licence}
 
 This software is \i{copyright} 2004-2023 Simon Tatham.
