@@ -12,6 +12,7 @@
 \cfg{html-contents-depth-0}{1}
 \cfg{html-contents-depth-1}{2}
 \cfg{html-leaf-contains-contents}{true}
+\cfg{html-head-end}{<meta name="viewport" content="width=device-width, initial-scale=1">}
 
 \cfg{chm-filename}{puzzles.chm}
 \cfg{chm-contents-filename}{index.html}
