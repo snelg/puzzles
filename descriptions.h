@@ -48,7 +48,7 @@ NSString *GameDescriptions[][2] = {
     {@"Tracks", @"Fill in the railway track according to the clues."},
     {@"Twiddle", @"Rotate the tiles around themselves to arrange them into order."},
     {@"Undead", @"Place ghosts, vampires and zombies so that the right numbers of them can be seen in mirrors."},
-    {@"Unequal", @"Complete the latin square in accordance with the > signs."},
+    {@"Unequal", @"Complete the latin square in accordance with the &gt; signs."},
     {@"Unruly", @"Fill in the black and white grid to avoid runs of three."},
     {@"Untangle", @"Reposition the points so that the lines do not cross."},
 };
