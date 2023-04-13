@@ -3434,8 +3434,57 @@ so it's not recommended for boards larger than, say, 30\times\.30.
 
 \cfg{winhelp-topic}{games.abcd}
 
-Place letters according to numbers in the border. Identical letters
-cannot touch.
+You're given an empty grid, and several rows of numbers on the side.
+You have to write a letter in every empty cell, following these rules:
+
+\b The numbers on the edge indicate how many instances of a specific
+letter appear in that row or column.
+
+\b Identical letters can not be horizontally or vertically adjacent.
+
+The inventor of this type is unknown. This puzzle is also known under
+the names *ABCD Puzzle*, *ABC-Kombi* or *ABCD-R\u00e4{a}tsel*.
+
+More information: \W{https://www.janko.at/Raetsel/Abc-Kombi/index.htm}\cw{www.janko.at/Raetsel/Abc-Kombi/index.htm}
+
+\H{abcd-controls} \i{ABCD Controls}
+
+\IM{ABCD Controls} controls, for ABCD
+
+ABCD uses the same control scheme as Solo, but with letters instead of numbers.
+
+Left-click to select a cell, then type a letter on your keyboard to enter it.
+Press Backspace or Space to clear a cell.
+
+Right-click a cell, then type a letter to add a pencil mark. Pencil marks can
+be used for any purpose.
+
+You can also use the arrow keys to move the selected cell around. Press Enter
+to toggle between entering letters and entering pencil marks.
+
+Press the 'M' key to fill every empty cell with all possible pencil marks.
+
+\H{abcd-parameters} \I{parameters, for ABCD}ABCD parameters
+
+These parameters are available from the 'Custom...' option on the 'Type' menu.
+
+\dt \e{Width, Height}
+
+\dd Size of the grid in squares (excluding the size of the numbers on the
+edge).
+
+\dt \e{Letters}
+
+\dd The amount of different letters that can appear in the puzzle.
+
+\dt \e{Remove clues}
+
+\dd When enabled, the difficulty is increased by hiding certain number clues.
+
+\dt \e{Allow diagonal touching}
+
+\dd When disabled, letters cannot be diagonally adjacent (in addition to
+letters not being orthogonally adjacent).
 
 \C{ascent} \i{Ascent}
 

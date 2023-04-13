@@ -124,6 +124,10 @@ include/
 /Puzzles.x86_64.bin
 /version2.def
 /preprocessed.but
+/output.1
+/puzzles.pdf
+/puzzles.ps
+/puzzles.info*
 /*.a
 /aclocal.m4
 /autom4te.cache
