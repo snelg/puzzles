@@ -920,7 +920,7 @@ static void legacy_prefs_override(struct game_ui *ui_out)
 static game_ui *new_ui(const game_state *state)
 {
     game_ui *ui = snew(game_ui);
-    ui->draw_faint_lines = true;
+    ui->draw_faint_lines = false;
     ui->autofollow = AF_ADAPTIVE;
     legacy_prefs_override(ui);
     return ui;

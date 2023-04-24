@@ -1903,7 +1903,7 @@ static game_ui *new_ui(const game_state *state)
     ui->cursor_active = getenv_bool("PUZZLES_SHOW_CURSOR", false);
     ui->curx = ui->cury = 0;
 
-    ui->gui_style = GUI_MASYU;
+    ui->gui_style = GUI_LOOPY;
     legacy_prefs_override(ui);
 
     return ui;
