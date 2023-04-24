@@ -96,6 +96,27 @@ static int saveGameRead(void *ctx, void *buf, int len)
     return r;
 }
 
+- (void)loadPrefs
+{
+	NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+	NSString *prefs = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/%s.prefs", path, ourgame->name] encoding:NSUTF8StringEncoding error:NULL];
+	if (prefs != nil) {
+		struct StringReadContext srctx;
+		srctx.save = (__bridge void *)(prefs);
+		srctx.pos = 0;
+		midend_load_prefs(me, saveGameRead, &srctx);
+	}
+}
+
+- (void)savePrefs
+{
+	NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+	NSMutableString *prefs = [[NSMutableString alloc] init];
+	midend_save_prefs(me, saveGameWrite, (__bridge void *)(prefs));
+	[prefs writeToFile:[NSString stringWithFormat:@"%@/%s.prefs", path, ourgame->name] atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+	midend_force_redraw(me);
+}
+
 - (id)initWithFrame:(CGRect)frame nc:(UINavigationController *)nc game:(const game *)g saved:(NSString *)saved inprogress:(BOOL)inprogress
 {
     self = [super initWithFrame:frame];
@@ -117,6 +138,7 @@ static int saveGameRead(void *ctx, void *buf, int len)
             setenv(buf, value, 1);
         }
         me = midend_new(&fe, ourgame, &ios_drawing, &fe);
+		[self loadPrefs];
         fe.colours = (rgb *)midend_colours(me, &fe.ncolours);
         self.backgroundColor = [UIColor colorWithRed:fe.colours[0][0] green:fe.colours[0][1] blue:fe.colours[0][2] alpha:1];
         toggles = [[NSMutableDictionary alloc] init];
@@ -644,9 +666,9 @@ static void saveGameWrite(void *ctx, void *buf, int len)
 {
     UIActionSheet *gameMenu;
     if (ourgame->can_solve) {
-        gameMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"New game" otherButtonTitles:@"Specific game", @"Specific Random Seed", @"Restart", @"Solve", nil];
+        gameMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"New game" otherButtonTitles:@"Specific game", @"Specific Random Seed", @"Preferences", @"Restart", @"Solve", nil];
     } else {
-        gameMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"New game" otherButtonTitles:@"Specific game", @"Specific Random Seed", @"Restart", nil];
+        gameMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"New game" otherButtonTitles:@"Specific game", @"Specific Random Seed", @"Preferences", @"Restart", nil];
     }
     // Avoid doing this because on the iPad, the popover will automatically add the toolbar to the list of passthrough
     // views, causing unwanted effects if you click on other toolbar buttons before the popover dismisses.
@@ -661,8 +683,9 @@ static void saveGameWrite(void *ctx, void *buf, int len)
         case 0: [self doNewGame]; break;
         case 1: [self doSpecificGame]; break;
         case 2: [self doSpecificSeed]; break;
-        case 3: [self doRestart]; break;
-        case 4:
+		case 3: [self doPreferences]; break;
+        case 4: [self doRestart]; break;
+        case 5:
             if (ourgame->can_solve) {
                 [self doSolve];
             } else {
@@ -693,14 +716,30 @@ static void saveGameWrite(void *ctx, void *buf, int len)
     free(wintitle);
 }
 
+- (void)doPreferences
+{
+	char *wintitle;
+	config_item *config = midend_get_config(me, CFG_PREFS, &wintitle);
+	[navigationController pushViewController:[[GameSettingsController alloc] initWithGame:ourgame config:config type:CFG_PREFS title:[NSString stringWithUTF8String:wintitle] delegate:self] animated:YES];
+	free(wintitle);
+}
+
 - (void)didApply:(config_item *)config
 {
-    const char *msg = midend_game_id(me, config[0].u.string.sval);
-    if (msg) {
-        [[[UIAlertView alloc] initWithTitle:@"Puzzles" message:[NSString stringWithUTF8String:msg] delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
-        return;
-    }
-    [self startNewGame];
+	// hacky workaround to avoid full re-implementation
+	char *wintitle;
+	config_item *prefs_config = midend_get_config(me, CFG_PREFS, &wintitle);
+	if (!strcmp(config[0].kw, prefs_config[0].kw)) {
+		midend_set_config(me, CFG_PREFS, config);
+		[self savePrefs];
+	} else {
+		const char *msg = midend_game_id(me, config[0].u.string.sval);
+		if (msg) {
+			[[[UIAlertView alloc] initWithTitle:@"Puzzles" message:[NSString stringWithUTF8String:msg] delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+			return;
+		}
+		[self startNewGame];
+	}
     [navigationController popViewControllerAnimated:YES];
 }
 

@@ -103,7 +103,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (type != CFG_SETTINGS) {
+    if (type != CFG_SETTINGS && type != CFG_PREFS) {
         if (section == 0) {
             return [NSString stringWithUTF8String:config_items[0].name];
         }
@@ -126,7 +126,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     switch (indexPath.section) {
         case 0:
-            if (type == CFG_SETTINGS) {
+            if (type == CFG_SETTINGS || type == CFG_PREFS) {
                 cell.textLabel.text = [NSString stringWithUTF8String:config_items[indexPath.row].name];
                 switch (config_items[indexPath.row].type) {
                     case C_STRING: {
