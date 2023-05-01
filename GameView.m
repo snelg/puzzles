@@ -139,6 +139,7 @@ static int saveGameRead(void *ctx, void *buf, int len)
         }
         me = midend_new(&fe, ourgame, &ios_drawing, &fe);
 		[self loadPrefs];
+		midend_new_game(me); // Actually applies prefs, so midend_get_config below works
         fe.colours = (rgb *)midend_colours(me, &fe.ncolours);
         self.backgroundColor = [UIColor colorWithRed:fe.colours[0][0] green:fe.colours[0][1] blue:fe.colours[0][2] alpha:1];
         toggles = [[NSMutableDictionary alloc] init];
