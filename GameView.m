@@ -147,20 +147,13 @@ static int saveGameRead(void *ctx, void *buf, int len)
             struct StringReadContext srctx;
             srctx.save = (__bridge void *)(saved);
             srctx.pos = 0;
-			// Workaround until upstream fix: midend_deserialise resets the CFG_PREFS, so store
-			// them and manually re-set them after midend_deserialise
-			char *ignore;
-			config_item *prefs_config = midend_get_config(me, CFG_PREFS, &ignore);
-			sfree(ignore);
             const char *msg = midend_deserialise(me, saveGameRead, &srctx);
             if (msg) {
                 [[[UIAlertView alloc] initWithTitle:@"Puzzles" message:[NSString stringWithUTF8String:msg] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                 [self startNewGame];
             } else if (!inprogress) {
                 [self startNewGame];
-            } else {
-				midend_set_config(me, CFG_PREFS, prefs_config);
-			}
+            }
         } else {
             if (ourgame == &pattern && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
                 midend_game_id(me, "5");
