@@ -1862,7 +1862,7 @@ static game_ui *new_ui(const game_state *state)
     game_ui *ui = snew(game_ui);
     ui->cur_x = ui->cur_y = 0;
     ui->cur_visible = getenv_bool("PUZZLES_SHOW_CURSOR", false);
-    ui->draw_blobs_when_lit = false;
+    ui->draw_blobs_when_lit = true;
     legacy_prefs_override(ui);
     return ui;
 }
