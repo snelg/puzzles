@@ -231,6 +231,7 @@
 		F11965902233205C006AC204 /* mathrax-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965882233205C006AC204 /* mathrax-96d24@2x.png */; };
 		F11965912233205C006AC204 /* seismic-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11965892233205C006AC204 /* seismic-96d24@2x.png */; };
 		F149196A2280E28500C21C88 /* sort.c in Sources */ = {isa = PBXBuildFile; fileRef = F14919692280E28500C21C88 /* sort.c */; };
+		F14F8EC62A4E5ED600904ADE /* spectre.c in Sources */ = {isa = PBXBuildFile; fileRef = F14F8EC32A4E5ED600904ADE /* spectre.c */; };
 		F15D1D36209A1DF800499142 /* matching.c in Sources */ = {isa = PBXBuildFile; fileRef = F15D1D35209A1DF800499142 /* matching.c */; };
 		F1729A172724FD6B00F0BE01 /* bricks-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1729A152724FD6B00F0BE01 /* bricks-96d24.png */; };
 		F1729A182724FD6B00F0BE01 /* bricks-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1729A162724FD6B00F0BE01 /* bricks-96d24@2x.png */; };
@@ -524,6 +525,11 @@
 		F11965892233205C006AC204 /* seismic-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "seismic-96d24@2x.png"; path = "icons/seismic-96d24@2x.png"; sourceTree = "<group>"; };
 		F148CEBD2629315100CA17E1 /* generated-games.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "generated-games.h"; sourceTree = SOURCE_ROOT; };
 		F14919692280E28500C21C88 /* sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort.c; sourceTree = "<group>"; };
+		F14F8EC12A4E5ED600904ADE /* spectre-internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spectre-internal.h"; sourceTree = "<group>"; };
+		F14F8EC22A4E5ED600904ADE /* spectre-tables-manual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spectre-tables-manual.h"; sourceTree = "<group>"; };
+		F14F8EC32A4E5ED600904ADE /* spectre.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = spectre.c; sourceTree = "<group>"; };
+		F14F8EC42A4E5ED600904ADE /* spectre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spectre.h; sourceTree = "<group>"; };
+		F14F8EC52A4E5ED600904ADE /* spectre-tables-auto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spectre-tables-auto.h"; sourceTree = "<group>"; };
 		F15D1D34209A1DEB00499142 /* matching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matching.h; sourceTree = "<group>"; };
 		F15D1D35209A1DF800499142 /* matching.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matching.c; sourceTree = "<group>"; };
 		F1729A152724FD6B00F0BE01 /* bricks-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bricks-96d24.png"; path = "icons/bricks-96d24.png"; sourceTree = "<group>"; };
@@ -678,6 +684,11 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F14F8EC12A4E5ED600904ADE /* spectre-internal.h */,
+				F14F8EC52A4E5ED600904ADE /* spectre-tables-auto.h */,
+				F14F8EC22A4E5ED600904ADE /* spectre-tables-manual.h */,
+				F14F8EC32A4E5ED600904ADE /* spectre.c */,
+				F14F8EC42A4E5ED600904ADE /* spectre.h */,
 				F1189C442232F99E0036C0CE /* abcd.c */,
 				F17810D01F8BC690007B8547 /* ascent.c */,
 				3701DC2F16E734A800896D7D /* blackbox.c */,
@@ -1238,6 +1249,7 @@
 				3786A3281AA83A9000B052ED /* tracks.c in Sources */,
 				3701DC7616E734A800896D7D /* keen.c in Sources */,
 				3701DC7716E734A800896D7D /* latin.c in Sources */,
+				F14F8EC62A4E5ED600904ADE /* spectre.c in Sources */,
 				3701DC7816E734A800896D7D /* laydomino.c in Sources */,
 				3701DC7916E734A800896D7D /* lightup.c in Sources */,
 				F1189C4B2232F9CB0036C0CE /* seismic.c in Sources */,
