@@ -251,6 +251,7 @@
 		F17810E41F8BD232007B8547 /* ascent-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DC1F8BD232007B8547 /* ascent-96d24@2x.png */; };
 		F17810E51F8BD232007B8547 /* spokes-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DD1F8BD232007B8547 /* spokes-96d24.png */; };
 		F17810E61F8BD232007B8547 /* ascent-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DE1F8BD232007B8547 /* ascent-96d24.png */; };
+		F19B75132A859F59006FA013 /* penrose-legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = F19B75122A859F59006FA013 /* penrose-legacy.c */; };
 		F1A3B40129E7142C007C01D9 /* mosaic.html in Resources */ = {isa = PBXBuildFile; fileRef = F1A3B3F429E7142C007C01D9 /* mosaic.html */; };
 		F1A3B40229E7142C007C01D9 /* seismic.html in Resources */ = {isa = PBXBuildFile; fileRef = F1A3B3F529E7142C007C01D9 /* seismic.html */; };
 		F1A3B40329E7142C007C01D9 /* clusters.html in Resources */ = {isa = PBXBuildFile; fileRef = F1A3B3F629E7142C007C01D9 /* clusters.html */; };
@@ -550,6 +551,9 @@
 		F17810DC1F8BD232007B8547 /* ascent-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ascent-96d24@2x.png"; path = "icons/ascent-96d24@2x.png"; sourceTree = "<group>"; };
 		F17810DD1F8BD232007B8547 /* spokes-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "spokes-96d24.png"; path = "icons/spokes-96d24.png"; sourceTree = "<group>"; };
 		F17810DE1F8BD232007B8547 /* ascent-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ascent-96d24.png"; path = "icons/ascent-96d24.png"; sourceTree = "<group>"; };
+		F19B75102A859F59006FA013 /* penrose-legacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "penrose-legacy.h"; sourceTree = "<group>"; };
+		F19B75112A859F59006FA013 /* penrose-internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "penrose-internal.h"; sourceTree = "<group>"; };
+		F19B75122A859F59006FA013 /* penrose-legacy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "penrose-legacy.c"; sourceTree = "<group>"; };
 		F1A3B3F429E7142C007C01D9 /* mosaic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = mosaic.html; sourceTree = "<group>"; };
 		F1A3B3F529E7142C007C01D9 /* seismic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = seismic.html; sourceTree = "<group>"; };
 		F1A3B3F629E7142C007C01D9 /* clusters.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = clusters.html; sourceTree = "<group>"; };
@@ -684,6 +688,9 @@
 		3701DC2E16E7330700896D7D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F19B75112A859F59006FA013 /* penrose-internal.h */,
+				F19B75122A859F59006FA013 /* penrose-legacy.c */,
+				F19B75102A859F59006FA013 /* penrose-legacy.h */,
 				F14F8EC12A4E5ED600904ADE /* spectre-internal.h */,
 				F14F8EC52A4E5ED600904ADE /* spectre-tables-auto.h */,
 				F14F8EC22A4E5ED600904ADE /* spectre-tables-manual.h */,
@@ -1269,6 +1276,7 @@
 				3701DC8316E734A800896D7D /* misc.c in Sources */,
 				F1189C492232F9C00036C0CE /* mathrax.c in Sources */,
 				F1189C452232F99E0036C0CE /* abcd.c in Sources */,
+				F19B75132A859F59006FA013 /* penrose-legacy.c in Sources */,
 				3701DC8416E734A800896D7D /* net.c in Sources */,
 				3701DC8516E734A800896D7D /* netslide.c in Sources */,
 				3701DC8616E734A800896D7D /* nullgame.c in Sources */,
