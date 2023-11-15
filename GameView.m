@@ -731,7 +731,7 @@ static void saveGameWrite(void *ctx, void *buf, int len)
 	char *ignore;
 	config_item *prefs_config = midend_get_config(me, CFG_PREFS, &ignore);
 	sfree(ignore);
-	if (!strcmp(config[0].kw, prefs_config[0].kw)) {
+	if (config[0].kw != NULL && !strcmp(config[0].kw, prefs_config[0].kw)) {
 		midend_set_config(me, CFG_PREFS, config);
 		[self savePrefs];
 	} else {
