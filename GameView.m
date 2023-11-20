@@ -495,15 +495,34 @@ static void saveGameWrite(void *ctx, void *buf, int len)
 {
 	UIPress *press;
 	for (press in presses) {
-		if (press.key != nil && [press.key.charactersIgnoringModifiers length] > 0) {
+		if (press.key != nil) {
+			int sendKey = -1;
 			if (
 				ourgame->can_solve
 				&& press.key.modifierFlags & UIKeyModifierControl
 				&& [press.key.charactersIgnoringModifiers isEqual: @"s"]
 			) {
-				[self doSolve];
+				sendKey = UI_SOLVE;
+			} else if ([press.key.charactersIgnoringModifiers length] == 1) {
+				sendKey = [press.key.charactersIgnoringModifiers characterAtIndex:0];
 			} else {
-				midend_process_key(me, -1, -1, [press.key.charactersIgnoringModifiers characterAtIndex:0]);
+				switch (press.key.keyCode) {
+					case UIKeyboardHIDUsageKeyboardLeftArrow:
+						sendKey = CURSOR_LEFT;
+						break;
+					case UIKeyboardHIDUsageKeyboardUpArrow:
+						sendKey = CURSOR_UP;
+						break;
+					case UIKeyboardHIDUsageKeyboardRightArrow:
+						sendKey = CURSOR_RIGHT;
+						break;
+					case UIKeyboardHIDUsageKeyboardDownArrow:
+						sendKey = CURSOR_DOWN;
+						break;
+				}
+			}
+			if (sendKey != -1) {
+				midend_process_key(me, -1, -1, sendKey);
 			}
 		}
 	}
