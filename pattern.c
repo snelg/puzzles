@@ -185,6 +185,8 @@ static const char *validate_params(const game_params *params, bool full)
     if (params->w > INT_MAX - 1 || params->h > INT_MAX - 1 ||
         params->w > INT_MAX / params->h)
         return "Puzzle must not be unreasonably large";
+    if (params->w * params->h < 2)
+        return "Grid must contain at least two squares";
     return NULL;
 }
 
@@ -1294,7 +1296,7 @@ static char *interpret_move(const game_state *state, game_ui *ui,
                             int x, int y, int button)
 {
     bool control = button & MOD_CTRL, shift = button & MOD_SHFT;
-    button &= ~MOD_MASK;
+    button = STRIP_BUTTON_MODIFIERS(button);
 
     x = FROMCOORD(state->common->w, x);
     y = FROMCOORD(state->common->h, y);

@@ -1145,9 +1145,9 @@ the \c{button} parameter:
 
 \dt \cw{MOD_CTRL}, \cw{MOD_SHFT}
 
-\dd These indicate that the Control or Shift key was pressed
-alongside the key. They only apply to the cursor keys, not to mouse
-buttons or anything else.
+\dd These indicate that the Control or Shift key was pressed alongside
+the key. They only apply to the cursor keys and the ASCII horizontal
+tab character \cw{\\t}, not to mouse buttons or anything else.
 
 \dt \cw{MOD_NUM_KEYPAD}
 
@@ -1161,8 +1161,10 @@ input probably just wants to treat the numeric keypad as numbers).
 \dt \cw{MOD_MASK}
 
 \dd This mask is the bitwise OR of all the available modifiers; you
-can bitwise-AND with \cw{~MOD_MASK} to strip all the modifiers off
-any input value.
+can bitwise-AND with \cw{~MOD_MASK} to strip all the modifiers off any
+input value; as this is a common operation, the
+\cw{STRIP_BUTTON_MODIFIERS()} macro can do this for you (see
+\k{utils-strip-button-modifiers}).
 
 \S{backend-execute-move} \cw{execute_move()}
 
@@ -1795,10 +1797,10 @@ structures conveniently.
 The backend should set \cw{*nkeys} to the number of elements in the
 returned array.
 
-The field for this function point in the \cw{game} structure might be
-set to \cw{NULL} (and indeed it is for the majority of the games) to
-indicate that no additional buttons (apart from the cursor keys) are
-required to play the game.
+The field for this function pointer in the \cw{game} structure might
+be set to \cw{NULL} (and indeed it is for the majority of the games)
+to indicate that no additional buttons (apart from the cursor keys)
+are required to play the game.
 
 This function should not be called directly by frontends. Instead,
 frontends should use \cw{midend_request_keys()}
@@ -5321,6 +5323,19 @@ many domino tilings of the same grid.
 \c{list} should have space for \c{2*w*h} ints.
 
 The returned array is delivered in \c{grid}.
+
+\S{utils-strip-button-modifiers} \cw{STRIP_BUTTON_MODIFIERS()}
+
+This macro, defined in the main Puzzles header file, strips the
+modifier flags from the key code passed as an argument. It is
+equivalent to a bitwise-AND with \cw{~MOD_MASK}.
+
+\S{utils-swap-regions} \cw{swap_regions()}
+
+\c void swap_regions(void *av, void *bv, size_t size);
+
+Swap two regions of memory of \cw{size} bytes. The two regions must
+not overlap.
 
 \C{writing} How to write a new puzzle
 
