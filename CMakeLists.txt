@@ -27,6 +27,7 @@ set(rome_crop 420x420 180x180+90+30)
 set(salad_crop 420x420 180x180+120+0)
 set(seismic_crop 420x420 180x180+90+30)
 set(spokes_crop 360x360 180x180+120+180)
+set(subsets_crop 288x360 80x80+90+150)
 
 puzzle(abcd
   DISPLAYNAME "ABCD"
@@ -300,6 +301,12 @@ puzzle(sticks
   OBJECTIVE "Fill in the grid with horizontal and vertical line segments.")
 solver(sticks ${CMAKE_SOURCE_DIR}/dsf.c)
 
+puzzle(subsets
+  DISPLAYNAME "Subsets"
+  DESCRIPTION "Set-defining puzzle"
+  OBJECTIVE "Place each set once, in accordance with the subset clues.")
+solver(subsets)
+
 puzzle(tents
   DISPLAYNAME "Tents"
   DESCRIPTION "Tent-placing puzzle"
@@ -346,6 +353,8 @@ puzzle(untangle
   DISPLAYNAME "Untangle"
   DESCRIPTION "Planar graph layout puzzle"
   OBJECTIVE "Reposition the points so that the lines do not cross.")
+guiprogram(grapheditor untangle.c
+  COMPILE_DEFINITIONS EDITOR)
 
 add_subdirectory(unfinished)
 add_subdirectory(auxiliary)
