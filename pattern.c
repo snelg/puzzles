@@ -36,7 +36,8 @@ enum {
 #define GUTTER (TILE_SIZE / 2)
 
 #define FROMCOORD(d, x) \
-        ( ((x) - (BORDER + GUTTER + TILE_SIZE * TLBORDER(d))) / TILE_SIZE )
+    ( ((x) - (BORDER + GUTTER + TILE_SIZE * (TLBORDER(d) - 1))) \
+      / TILE_SIZE - 1)
 
 #define SIZE(d) (2*BORDER + GUTTER + TILE_SIZE * (TLBORDER(d) + (d)))
 #define GETTILESIZE(d, w) ((double)w / (2.0 + (double)TLBORDER(d) + (double)(d)))
@@ -1182,7 +1183,8 @@ static char *game_text_format(const game_state *state)
     topleft = lw * top_gap + left_gap;
 
     board = snewn(len + 1, char);
-    sprintf(board, "%*s\n", len - 2, "");
+    memset(board, ' ', len);
+    board[len] = '\0';
 
     for (i = 0; i < lh; ++i) {
 	board[lw - 1 + i*lw] = '\n';
@@ -1199,7 +1201,7 @@ static char *game_text_format(const game_state *state)
 	}
     }
 
-    buf = snewn(left_gap, char);
+    buf = snewn(left_gap + 1, char);
     for (i = 0; i < h; ++i) {
 	char *p = buf, *start = board + top_gap*lw + left_gap + (i*ch+1)*lw;
 	for (j = 0; j < state->common->rowlen[i+w]; ++j) {
@@ -1209,9 +1211,9 @@ static char *game_text_format(const game_state *state)
 	memcpy(start - (p - buf), buf, p - buf);
     }
 
-    for (i = 0; i < w; ++i) {
-	for (j = 0; j < h; ++j) {
-	    int cell = topleft + i*cw + j*ch*lw;
+    for (i = 0; i < h; ++i) {
+	for (j = 0; j < w; ++j) {
+	    int cell = topleft + j*cw + i*ch*lw;
 	    int center = cell + cw/2 + (ch/2)*lw;
 	    int dx, dy;
 	    board[cell] = false ? center : '+';
@@ -1229,6 +1231,7 @@ static char *game_text_format(const game_state *state)
 
     sfree(buf);
 
+    assert(board[len] == '\0' && "Overwrote the NUL");
     return board;
 }
 
@@ -2025,8 +2028,12 @@ static void game_print(drawing *dr, const game_state *state, const game_ui *ui,
     int ink = print_mono_colour(dr, 0);
     int x, y, i;
 
-    /* Ick: fake up `ds->tilesize' for macro expansion purposes */
-    game_drawstate ads, *ds = &ads;
+    /*
+     * Make a game_drawstate, so that the TILE_SIZE macro will work in
+     * this function, and so that draw_numbers can use it to format
+     * the text for numeric clues.
+     */
+    game_drawstate *ds = game_new_drawstate(dr, state);
     game_set_size(dr, ds, NULL, tilesize);
 
     /*
@@ -2070,6 +2077,8 @@ static void game_print(drawing *dr, const game_state *state, const game_ui *ui,
 			    TOCOORD(h, y) + TILE_SIZE/2,
 			    TILE_SIZE/12, ink, ink);
 	}
+
+    game_free_drawstate(dr, ds);
 }
 
 #ifdef COMBINED
