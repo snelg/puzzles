@@ -1578,7 +1578,7 @@ static int game_status(const game_state *state)
 #endif
 
 const struct game thegame = {
-    "Subsets", NULL, NULL,
+    "Subsets", "games.subsets", "subsets",
     default_params,
     game_fetch_preset, NULL,
     decode_params,
