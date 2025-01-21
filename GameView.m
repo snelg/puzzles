@@ -86,7 +86,7 @@ struct StringReadContext {
     int pos;
 };
 
-static int saveGameRead(void *ctx, void *buf, int len)
+static bool saveGameRead(void *ctx, void *buf, int len)
 {
     struct StringReadContext *srctx = (struct StringReadContext *)ctx;
     NSString *save = (__bridge NSString *)(srctx->save);
@@ -212,7 +212,7 @@ static int saveGameRead(void *ctx, void *buf, int len)
     });
 }
 
-static void saveGameWrite(void *ctx, void *buf, int len)
+static void saveGameWrite(void *ctx, const void *buf, int len)
 {
     NSMutableString *save = (__bridge NSMutableString *)(ctx);
     [save appendString:[[NSString alloc] initWithBytes:buf length:len encoding:NSUTF8StringEncoding]];
@@ -814,8 +814,8 @@ static void saveGameWrite(void *ctx, void *buf, int len)
 
 @end
 
-static void ios_draw_text(void *handle, int x, int y, int fonttype,
-                          int fontsize, int align, int colour, char *text)
+static void ios_draw_text(drawing *handle, int x, int y, int fonttype,
+                          int fontsize, int align, int colour, const char *text)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -861,7 +861,7 @@ static void ios_draw_text(void *handle, int x, int y, int fonttype,
     CFRelease(str);
 }
 
-static void ios_draw_rect(void *handle, int x, int y, int w, int h, int colour)
+static void ios_draw_rect(drawing *handle, int x, int y, int w, int h, int colour)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -869,7 +869,7 @@ static void ios_draw_rect(void *handle, int x, int y, int w, int h, int colour)
     CGContextFillRect(gv.bitmap, CGRectMake(x, y, w, h));
 }
 
-static void ios_draw_line(void *handle, int x1, int y1, int x2, int y2, int colour)
+static void ios_draw_line(drawing *handle, int x1, int y1, int x2, int y2, int colour)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -880,7 +880,7 @@ static void ios_draw_line(void *handle, int x1, int y1, int x2, int y2, int colo
     CGContextStrokePath(gv.bitmap);
 }
 
-static void ios_draw_polygon(void *handle, int *coords, int npoints,
+static void ios_draw_polygon(drawing *handle, const int *coords, int npoints,
                              int fillcolour, int outlinecolour)
 {
     frontend *fe = (frontend *)handle;
@@ -900,7 +900,7 @@ static void ios_draw_polygon(void *handle, int *coords, int npoints,
     CGContextDrawPath(gv.bitmap, mode);
 }
 
-static void ios_draw_circle(void *handle, int cx, int cy, int radius,
+static void ios_draw_circle(drawing *handle, int cx, int cy, int radius,
                             int fillcolour, int outlinecolour)
 {
     frontend *fe = (frontend *)handle;
@@ -913,14 +913,14 @@ static void ios_draw_circle(void *handle, int cx, int cy, int radius,
     CGContextStrokeEllipseInRect(gv.bitmap, CGRectMake(cx-radius+1, cy-radius+1, radius*2-1, radius*2-1));
 }
 
-static void ios_draw_update(void *handle, int x, int y, int w, int h)
+static void ios_draw_update(drawing *handle, int x, int y, int w, int h)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
     [gv drawGameRect:CGRectMake(x, y, w, h)];
 }
 
-static void ios_clip(void *handle, int x, int y, int w, int h)
+static void ios_clip(drawing *handle, int x, int y, int w, int h)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -931,7 +931,7 @@ static void ios_clip(void *handle, int x, int y, int w, int h)
     fe->clipping = YES;
 }
 
-static void ios_unclip(void *handle)
+static void ios_unclip(drawing *handle)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -941,15 +941,15 @@ static void ios_unclip(void *handle)
     fe->clipping = NO;
 }
 
-static void ios_start_draw(void *handle)
+static void ios_start_draw(drawing *handle)
 {
 }
 
-static void ios_end_draw(void *handle)
+static void ios_end_draw(drawing *handle)
 {
 }
 
-static void ios_status_bar(void *handle, char *text)
+static void ios_status_bar(drawing *handle, const char *text)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -963,7 +963,7 @@ struct blitter {
     CGImageRef img;
 };
 
-static blitter *ios_blitter_new(void *handle, int w, int h)
+static blitter *ios_blitter_new(drawing *handle, int w, int h)
 {
     blitter *bl = snew(blitter);
     bl->w = w;
@@ -974,7 +974,7 @@ static blitter *ios_blitter_new(void *handle, int w, int h)
     return bl;
 }
 
-static void ios_blitter_free(void *handle, blitter *bl)
+static void ios_blitter_free(drawing *handle, blitter *bl)
 {
     if (bl->img != NULL) {
         CGImageRelease(bl->img);
@@ -982,7 +982,7 @@ static void ios_blitter_free(void *handle, blitter *bl)
     sfree(bl);
 }
 
-static void ios_blitter_save(void *handle, blitter *bl, int x, int y)
+static void ios_blitter_save(drawing *handle, blitter *bl, int x, int y)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -1000,7 +1000,7 @@ static void ios_blitter_save(void *handle, blitter *bl, int x, int y)
     CGImageRelease(bitmap);
 }
 
-static void ios_blitter_load(void *handle, blitter *bl, int x, int y)
+static void ios_blitter_load(drawing *handle, blitter *bl, int x, int y)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
@@ -1013,7 +1013,7 @@ static void ios_blitter_load(void *handle, blitter *bl, int x, int y)
     CGContextDrawImage(gv.bitmap, CGRectMake(x, y, CGImageGetWidth(bl->img), CGImageGetHeight(bl->img)), bl->img);
 }
 
-static char *ios_text_fallback(void *handle, const char *const *strings,
+static char *ios_text_fallback(drawing *handle, const char *const *strings,
                                int nstrings)
 {
     // we should be able to handle any requested UTF-8 string
@@ -1021,6 +1021,7 @@ static char *ios_text_fallback(void *handle, const char *const *strings,
 }
 
 const struct drawing_api ios_drawing = {
+	1,
     ios_draw_text,
     ios_draw_rect,
     ios_draw_line,
