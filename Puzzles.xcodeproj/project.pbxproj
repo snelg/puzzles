@@ -251,6 +251,8 @@
 		F17810E41F8BD232007B8547 /* ascent-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DC1F8BD232007B8547 /* ascent-96d24@2x.png */; };
 		F17810E51F8BD232007B8547 /* spokes-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DD1F8BD232007B8547 /* spokes-96d24.png */; };
 		F17810E61F8BD232007B8547 /* ascent-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F17810DE1F8BD232007B8547 /* ascent-96d24.png */; };
+		F1937DEF2D48331800549ED7 /* subsets-96d24.png in Resources */ = {isa = PBXBuildFile; fileRef = F1937DEE2D48331800549ED7 /* subsets-96d24.png */; };
+		F1937DF12D48333300549ED7 /* subsets-96d24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1937DF02D48333300549ED7 /* subsets-96d24@2x.png */; };
 		F19B75132A859F59006FA013 /* penrose-legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = F19B75122A859F59006FA013 /* penrose-legacy.c */; };
 		F1A3B40129E7142C007C01D9 /* mosaic.html in Resources */ = {isa = PBXBuildFile; fileRef = F1A3B3F429E7142C007C01D9 /* mosaic.html */; };
 		F1A3B40229E7142C007C01D9 /* seismic.html in Resources */ = {isa = PBXBuildFile; fileRef = F1A3B3F529E7142C007C01D9 /* seismic.html */; };
@@ -554,6 +556,8 @@
 		F17810DC1F8BD232007B8547 /* ascent-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ascent-96d24@2x.png"; path = "icons/ascent-96d24@2x.png"; sourceTree = "<group>"; };
 		F17810DD1F8BD232007B8547 /* spokes-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "spokes-96d24.png"; path = "icons/spokes-96d24.png"; sourceTree = "<group>"; };
 		F17810DE1F8BD232007B8547 /* ascent-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ascent-96d24.png"; path = "icons/ascent-96d24.png"; sourceTree = "<group>"; };
+		F1937DEE2D48331800549ED7 /* subsets-96d24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "subsets-96d24.png"; path = "icons/subsets-96d24.png"; sourceTree = "<group>"; };
+		F1937DF02D48333300549ED7 /* subsets-96d24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "subsets-96d24@2x.png"; path = "icons/subsets-96d24@2x.png"; sourceTree = "<group>"; };
 		F19B75102A859F59006FA013 /* penrose-legacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "penrose-legacy.h"; sourceTree = "<group>"; };
 		F19B75112A859F59006FA013 /* penrose-internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "penrose-internal.h"; sourceTree = "<group>"; };
 		F19B75122A859F59006FA013 /* penrose-legacy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "penrose-legacy.c"; sourceTree = "<group>"; };
@@ -798,6 +802,8 @@
 		3701DCE116EB16B400896D7D /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				F1937DF02D48333300549ED7 /* subsets-96d24@2x.png */,
+				F1937DEE2D48331800549ED7 /* subsets-96d24.png */,
 				F1729A152724FD6B00F0BE01 /* bricks-96d24.png */,
 				F1729A162724FD6B00F0BE01 /* bricks-96d24@2x.png */,
 				F1F6F9972638F9E500BB7BB0 /* mosaic-96d24.png */,
@@ -1105,6 +1111,7 @@
 				3701DD6E16F3997400896D7D /* galaxies.html in Resources */,
 				3701DD6F16F3997400896D7D /* guess.html in Resources */,
 				3701DD7016F3997400896D7D /* index.html in Resources */,
+				F1937DEF2D48331800549ED7 /* subsets-96d24.png in Resources */,
 				F1F6F9992638F9E500BB7BB0 /* mosaic-96d24.png in Resources */,
 				F1EFAA9C1DE3A88C008C6D7F /* palisade.html in Resources */,
 				3701DD7116F3997400896D7D /* inertia.html in Resources */,
@@ -1211,6 +1218,7 @@
 				3786A32C1AA83C5D00B052ED /* tracks.html in Resources */,
 				F1F269CB20004348000C4E56 /* rome-96d24.png in Resources */,
 				3782E85116FD63AF0040B261 /* unruly-96d24@2x.png in Resources */,
+				F1937DF12D48333300549ED7 /* subsets-96d24@2x.png in Resources */,
 				3782E85216FD63AF0040B261 /* untangle-96d24@2x.png in Resources */,
 				3782E85716FDAA610040B261 /* Icon-72.png in Resources */,
 				3782E85816FDAA610040B261 /* Icon-72@2x.png in Resources */,
