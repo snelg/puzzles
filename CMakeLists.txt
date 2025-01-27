@@ -19,15 +19,15 @@ cliprogram(polygon-test draw-poly.c
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-set(abcd_crop 420x420 192x192+108+108)
-set(ascent_crop 420x420 210x210+75+15)
-set(boats_crop 420x420 128x128+188+22)
-set(crossing_crop 504x504 180x180+167+139)
-set(rome_crop 420x420 180x180+90+30)
-set(salad_crop 420x420 180x180+120+0)
-set(seismic_crop 420x420 180x180+90+30)
-set(spokes_crop 360x360 180x180+120+180)
-set(subsets_crop 288x360 80x80+90+150)
+set(abcd_crop 315x315 144x144+81+81)
+set(ascent_crop 336x336 168x168+60+12)
+set(boats_crop 256x320 128x128+114+15)
+set(crossing_crop 240x360 128x128+105+93)
+set(rome_crop 280x280 128x128+58+16)
+set(salad_crop 280x280 128x128+80+0)
+set(seismic_crop 336x336 148x148+69+20)
+set(spokes_crop 432x432 216x216+144+216)
+set(subsets_crop 432x540 128x128+130+230)
 
 puzzle(abcd
   DISPLAYNAME "ABCD"

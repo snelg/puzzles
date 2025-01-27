@@ -81,12 +81,13 @@ set(untangle_crop 320x320 164x164+3+116)
 add_custom_target(icons)
 
 # All sizes of icon we make for any purpose.
-set(all_icon_sizes 128 96 88 64 48 44 32 24 16)
+set(all_icon_sizes 192 128 96 88 64 48 44 32 24 16)
 
 # Sizes of icon we put into the Windows .ico files.
 set(win_icon_sizes 48 32 16)
 
 # Border thickness for each icon size.
+set(border_192 8)
 set(border_128 8)
 set(border_96 4)
 set(border_88 4)
