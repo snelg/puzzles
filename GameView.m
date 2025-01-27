@@ -814,10 +814,10 @@ static void saveGameWrite(void *ctx, const void *buf, int len)
 
 @end
 
-static void ios_draw_text(drawing *handle, int x, int y, int fonttype,
+static void ios_draw_text(drawing *dr, int x, int y, int fonttype,
                           int fontsize, int align, int colour, const char *text)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     CFStringRef str = CFStringCreateWithBytes(NULL, (UInt8 *)text, strlen(text), kCFStringEncodingUTF8, false);
     CTFontRef font = CTFontCreateWithName(CFSTR("Helvetica"), fontsize, NULL);
@@ -861,17 +861,17 @@ static void ios_draw_text(drawing *handle, int x, int y, int fonttype,
     CFRelease(str);
 }
 
-static void ios_draw_rect(drawing *handle, int x, int y, int w, int h, int colour)
+static void ios_draw_rect(drawing *dr, int x, int y, int w, int h, int colour)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     CGContextSetRGBFillColor(gv.bitmap, fe->colours[colour][0], fe->colours[colour][1], fe->colours[colour][2], 1);
     CGContextFillRect(gv.bitmap, CGRectMake(x, y, w, h));
 }
 
-static void ios_draw_line(drawing *handle, int x1, int y1, int x2, int y2, int colour)
+static void ios_draw_line(drawing *dr, int x1, int y1, int x2, int y2, int colour)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     CGContextSetRGBStrokeColor(gv.bitmap, fe->colours[colour][0], fe->colours[colour][1], fe->colours[colour][2], 1);
     CGContextBeginPath(gv.bitmap);
@@ -880,10 +880,10 @@ static void ios_draw_line(drawing *handle, int x1, int y1, int x2, int y2, int c
     CGContextStrokePath(gv.bitmap);
 }
 
-static void ios_draw_polygon(drawing *handle, const int *coords, int npoints,
+static void ios_draw_polygon(drawing *dr, const int *coords, int npoints,
                              int fillcolour, int outlinecolour)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     CGContextSetRGBStrokeColor(gv.bitmap, fe->colours[outlinecolour][0], fe->colours[outlinecolour][1], fe->colours[outlinecolour][2], 1);
     CGContextBeginPath(gv.bitmap);
@@ -900,10 +900,10 @@ static void ios_draw_polygon(drawing *handle, const int *coords, int npoints,
     CGContextDrawPath(gv.bitmap, mode);
 }
 
-static void ios_draw_circle(drawing *handle, int cx, int cy, int radius,
+static void ios_draw_circle(drawing *dr, int cx, int cy, int radius,
                             int fillcolour, int outlinecolour)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     if (fillcolour >= 0) {
         CGContextSetRGBFillColor(gv.bitmap, fe->colours[fillcolour][0], fe->colours[fillcolour][1], fe->colours[fillcolour][2], 1);
@@ -913,16 +913,16 @@ static void ios_draw_circle(drawing *handle, int cx, int cy, int radius,
     CGContextStrokeEllipseInRect(gv.bitmap, CGRectMake(cx-radius+1, cy-radius+1, radius*2-1, radius*2-1));
 }
 
-static void ios_draw_update(drawing *handle, int x, int y, int w, int h)
+static void ios_draw_update(drawing *dr, int x, int y, int w, int h)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     [gv drawGameRect:CGRectMake(x, y, w, h)];
 }
 
-static void ios_clip(drawing *handle, int x, int y, int w, int h)
+static void ios_clip(drawing *dr, int x, int y, int w, int h)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     if (!fe->clipping) {
         CGContextSaveGState(gv.bitmap);
@@ -931,9 +931,9 @@ static void ios_clip(drawing *handle, int x, int y, int w, int h)
     fe->clipping = YES;
 }
 
-static void ios_unclip(drawing *handle)
+static void ios_unclip(drawing *dr)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     if (fe->clipping) {
         CGContextRestoreGState(gv.bitmap);
@@ -949,9 +949,9 @@ static void ios_end_draw(drawing *handle)
 {
 }
 
-static void ios_status_bar(drawing *handle, const char *text)
+static void ios_status_bar(drawing *dr, const char *text)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     gv.statusbar.text = [NSString stringWithUTF8String:text];
 }
@@ -982,9 +982,9 @@ static void ios_blitter_free(drawing *handle, blitter *bl)
     sfree(bl);
 }
 
-static void ios_blitter_save(drawing *handle, blitter *bl, int x, int y)
+static void ios_blitter_save(drawing *dr, blitter *bl, int x, int y)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     if (bl->img != NULL) {
         CGImageRelease(bl->img);
@@ -1000,9 +1000,9 @@ static void ios_blitter_save(drawing *handle, blitter *bl, int x, int y)
     CGImageRelease(bitmap);
 }
 
-static void ios_blitter_load(drawing *handle, blitter *bl, int x, int y)
+static void ios_blitter_load(drawing *dr, blitter *bl, int x, int y)
 {
-    frontend *fe = (frontend *)handle;
+	frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     GameView *gv = (__bridge GameView *)(fe->gv);
     if (x == BLITTER_FROMSAVED && y == BLITTER_FROMSAVED) {
         x = bl->x;
@@ -1025,7 +1025,11 @@ const struct drawing_api ios_drawing = {
     ios_draw_text,
     ios_draw_rect,
     ios_draw_line,
+#ifdef USE_DRAW_POLYGON_FALLBACK
+	draw_polygon_fallback,
+#else
     ios_draw_polygon,
+#endif
     ios_draw_circle,
     ios_draw_update,
     ios_clip,
