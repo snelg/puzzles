@@ -271,6 +271,7 @@
 		F1BD571325C9334500F15F78 /* sticks.c in Sources */ = {isa = PBXBuildFile; fileRef = F1BD571225C9334500F15F78 /* sticks.c */; };
 		F1C215EF2D47247200501336 /* draw-poly.c in Sources */ = {isa = PBXBuildFile; fileRef = F1C215EE2D47247200501336 /* draw-poly.c */; };
 		F1C215F12D4729E600501336 /* subsets.c in Sources */ = {isa = PBXBuildFile; fileRef = F1C215F02D4729E600501336 /* subsets.c */; };
+		F1C215F32D4733E700501336 /* subsets.html in Resources */ = {isa = PBXBuildFile; fileRef = F1C215F22D4733E700501336 /* subsets.html */; };
 		F1EFAA991DE3A09C008C6D7F /* findloop.c in Sources */ = {isa = PBXBuildFile; fileRef = F1EFAA971DE3A09C008C6D7F /* findloop.c */; };
 		F1EFAA9A1DE3A09C008C6D7F /* palisade.c in Sources */ = {isa = PBXBuildFile; fileRef = F1EFAA981DE3A09C008C6D7F /* palisade.c */; };
 		F1EFAA9C1DE3A88C008C6D7F /* palisade.html in Resources */ = {isa = PBXBuildFile; fileRef = F1EFAA9B1DE3A88C008C6D7F /* palisade.html */; };
@@ -577,6 +578,7 @@
 		F1BD571225C9334500F15F78 /* sticks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sticks.c; sourceTree = "<group>"; };
 		F1C215EE2D47247200501336 /* draw-poly.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "draw-poly.c"; sourceTree = "<group>"; };
 		F1C215F02D4729E600501336 /* subsets.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = subsets.c; sourceTree = "<group>"; };
+		F1C215F22D4733E700501336 /* subsets.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = subsets.html; sourceTree = "<group>"; };
 		F1EFAA971DE3A09C008C6D7F /* findloop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = findloop.c; sourceTree = "<group>"; };
 		F1EFAA981DE3A09C008C6D7F /* palisade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = palisade.c; sourceTree = "<group>"; };
 		F1EFAA9B1DE3A88C008C6D7F /* palisade.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = palisade.html; sourceTree = "<group>"; };
@@ -908,6 +910,7 @@
 			isa = PBXGroup;
 			children = (
 				F1A3B3F729E7142C007C01D9 /* abcd.html */,
+				F1C215F22D4733E700501336 /* subsets.html */,
 				F1A3B3F929E7142C007C01D9 /* ascent.html */,
 				F1A3B3F829E7142C007C01D9 /* boats.html */,
 				F1A3B3FF29E7142C007C01D9 /* bricks.html */,
@@ -1095,6 +1098,7 @@
 				3701DD6816F3997400896D7D /* cube.html in Resources */,
 				3701DD6916F3997400896D7D /* docindex.html in Resources */,
 				3701DD6A16F3997400896D7D /* dominosa.html in Resources */,
+				F1C215F32D4733E700501336 /* subsets.html in Resources */,
 				3701DD6B16F3997400896D7D /* fifteen.html in Resources */,
 				3701DD6C16F3997400896D7D /* filling.html in Resources */,
 				3701DD6D16F3997400896D7D /* flip.html in Resources */,
