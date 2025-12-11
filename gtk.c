@@ -31,11 +31,6 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include <gdk/gdkx.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/Xatom.h>
-
 #include "puzzles.h"
 #include "gtk.h"
 
@@ -52,9 +47,9 @@
 #endif
 #if GTK_CHECK_VERSION(2,8,0)
 # define USE_CAIRO
-# if GTK_CHECK_VERSION(3,0,0) || defined(GDK_DISABLE_DEPRECATED)
-#  define USE_CAIRO_WITHOUT_PIXMAP
-# endif
+#endif
+#if GTK_CHECK_VERSION(3,8,0)
+# define USE_GDK_FRAME_CLOCK
 #endif
 
 #if defined USE_CAIRO && GTK_CHECK_VERSION(2,10,0)
@@ -143,6 +138,189 @@ void fatal(const char *fmt, ...)
  * GTK front end to puzzles.
  */
 
+#if GTK_CHECK_VERSION(3,0,0)
+struct _WrapBox {
+    GtkContainer parent_instance;
+    GList *children;
+};
+struct _WrapBoxClass {
+    GtkContainerClass parent_class;
+};
+
+G_DECLARE_FINAL_TYPE(WrapBox, wrap_box, PUZZLES, WRAP_BOX, GtkContainer)
+
+static GtkWidget* wrap_box_new(void)
+{
+    return GTK_WIDGET(g_object_new(wrap_box_get_type(), NULL));
+}
+
+static void wrap_box_init(WrapBox *box)
+{
+    gtk_widget_set_has_window(GTK_WIDGET(box), false);
+    gtk_widget_set_redraw_on_allocate(GTK_WIDGET(box), false);
+    box->children = NULL;
+}
+
+G_DEFINE_TYPE(WrapBox, wrap_box, GTK_TYPE_CONTAINER)
+
+static void wrap_box_add(GtkContainer* container, GtkWidget *widget)
+{
+    WrapBox *box = PUZZLES_WRAP_BOX(container);
+    gtk_widget_set_parent(widget, GTK_WIDGET(box));
+    box->children = g_list_append(box->children, widget);
+}
+
+static void wrap_box_remove(GtkContainer* container, GtkWidget *widget)
+{
+    WrapBox *box = PUZZLES_WRAP_BOX(container);
+    box->children = g_list_remove(box->children, widget);
+    gtk_widget_unparent(widget);
+}
+
+static void wrap_box_forall(GtkContainer* container, gboolean include_internals,
+    GtkCallback callback, gpointer callback_data)
+{
+    WrapBox *box = PUZZLES_WRAP_BOX(container);
+    GList *child = box->children;
+    (void)include_internals;
+    while (child != NULL) {
+        GtkWidget *widget = GTK_WIDGET(child->data);
+        child = child->next;
+        callback(widget, callback_data);
+    }
+}
+
+static void wrap_box_get_child_size(GtkWidget* widget, int *width, int *height)
+{
+    WrapBox *box = PUZZLES_WRAP_BOX(widget);
+    GList *child;
+    GtkRequisition size;
+    *width = 0;
+    *height = 0;
+    for (child = box->children; child != NULL; child = child->next) {
+        gtk_widget_get_preferred_size(GTK_WIDGET(child->data), &size, NULL);
+        *width = max(*width, size.width);
+        *height = max(*height, size.height);
+    }
+}
+
+static GtkSizeRequestMode wrap_box_get_request_mode(GtkWidget *widget)
+{
+    return GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH;
+}
+
+static void wrap_box_get_preferred_width(GtkWidget *widget,
+    int *minimal, int *natural)
+{
+    int width, height;
+    wrap_box_get_child_size(widget, &width, &height);
+    if (minimal)
+        *minimal = width;
+    if (natural)
+        *natural = width * g_list_length(PUZZLES_WRAP_BOX(widget)->children);
+}
+
+static void wrap_box_get_preferred_height(GtkWidget *widget,
+    int *minimal, int *natural)
+{
+    int width, height;
+    wrap_box_get_child_size(widget, &width, &height);
+    if (minimal)
+        *minimal = height;
+    if (natural)
+        *natural = height;
+}
+
+static void wrap_box_get_preferred_width_for_height(GtkWidget *widget,
+    int height, int *minimal, int *natural)
+{
+    (void)height;
+    wrap_box_get_preferred_width(widget, minimal, natural);
+}
+
+static void wrap_box_get_preferred_height_for_width(GtkWidget *widget,
+    int width, int *minimal, int *natural)
+{
+    WrapBox *box = PUZZLES_WRAP_BOX(widget);
+    int child_count = g_list_length(box->children);
+    int children_per_line = 0, lines = 0;
+    int child_width, child_height;
+    wrap_box_get_child_size(widget, &child_width, &child_height);
+
+    if (child_width > 0)
+        children_per_line = width / child_width;
+    if (children_per_line > 0)
+        lines = child_count / children_per_line;
+    if (children_per_line * lines < child_count)
+        ++lines;
+
+    if (minimal)
+        *minimal = child_height * lines;
+    if (natural)
+        *natural = child_height * lines;
+}
+
+static void wrap_box_size_allocate(GtkWidget *widget,
+    GtkAllocation *allocation)
+{
+    GTK_WIDGET_CLASS(wrap_box_parent_class)->size_allocate(widget, allocation);
+
+    WrapBox *box = PUZZLES_WRAP_BOX(widget);
+    if (box->children == NULL)
+        return;
+    int child_count = g_list_length(box->children);
+    int child_width, child_height;
+    wrap_box_get_child_size(widget, &child_width, &child_height);
+
+    int children_per_line = min(allocation->width / child_width, child_count);
+    int lines = child_count / children_per_line;
+    if (children_per_line * lines < child_count)
+        ++lines;
+
+    int width_remaining = allocation->width;
+    int height_remaining = allocation->height;
+    int x = 0, y = 0;
+
+    GList *child;
+    GtkAllocation child_allocation;
+    child_allocation.x = allocation->x;
+    child_allocation.y = allocation->y;
+    for (child = box->children; child != NULL; child = child->next) {
+        child_allocation.width = width_remaining / (children_per_line - x);
+        child_allocation.height = height_remaining / (lines - y);
+        gtk_widget_size_allocate(GTK_WIDGET(child->data), &child_allocation);
+        child_allocation.x += child_allocation.width;
+        width_remaining -= child_allocation.width;
+        if (++x == children_per_line) {
+            x = 0;
+            ++y;
+            child_allocation.x = allocation->x;
+            child_allocation.y += child_allocation.height;
+            width_remaining = allocation->width;
+            height_remaining -= child_allocation.height;
+        }
+    }
+}
+
+static void wrap_box_class_init(WrapBoxClass *class)
+{
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(class);
+    GtkContainerClass *container_class = GTK_CONTAINER_CLASS(class);
+    widget_class->get_request_mode = wrap_box_get_request_mode;
+    widget_class->get_preferred_width = wrap_box_get_preferred_width;
+    widget_class->get_preferred_height = wrap_box_get_preferred_height;
+    widget_class->get_preferred_width_for_height
+        = wrap_box_get_preferred_width_for_height;
+    widget_class->get_preferred_height_for_width
+        = wrap_box_get_preferred_height_for_width;
+    widget_class->size_allocate = wrap_box_size_allocate;
+
+    container_class->add = wrap_box_add;
+    container_class->remove = wrap_box_remove;
+    container_class->forall = wrap_box_forall;
+}
+#endif
+
 static void changed_preset(frontend *fe);
 static void load_prefs(frontend *fe);
 static char *save_prefs(frontend *fe);
@@ -184,6 +362,14 @@ struct frontend {
     GtkWidget *area;
     GtkWidget *statusbar;
     GtkWidget *menubar;
+    GtkWidget *keybar_swap_button;
+    GtkWidget *keybar;
+#if GTK_CHECK_VERSION(3,14,0)
+    GtkGesture *long_press;
+    GdkEventSequence *touch_sequence;
+    int touch_button;
+    int touch_ox, touch_oy;
+#endif
 #if GTK_CHECK_VERSION(3,20,0)
     GtkCssProvider *css_provider;
 #endif
@@ -194,9 +380,6 @@ struct frontend {
     const float *colours;
     cairo_t *cr;
     cairo_surface_t *image;
-#ifndef USE_CAIRO_WITHOUT_PIXMAP
-    GdkPixmap *pixmap;
-#endif
     GdkColor background;	       /* for painting outside puzzle area */
 #else
     GdkPixmap *pixmap;
@@ -208,8 +391,13 @@ struct frontend {
     int ncolours;
     int bbox_l, bbox_r, bbox_u, bbox_d;
     bool timer_active;
+#ifdef USE_GDK_FRAME_CLOCK
+    guint timer_id;
+    gint64 last_time;
+#else
     int timer_id;
     struct timeval last_time;
+#endif
     struct font *fonts;
     int nfonts, fontsize;
     config_item *cfg;
@@ -288,7 +476,7 @@ struct blitter {
 #else
     GdkPixmap *pixmap;
 #endif
-    int w, h, x, y;
+    int w, h;
 };
 
 void get_random_seed(void **randseed, int *randseedsize)
@@ -351,7 +539,6 @@ static void gtk_status_bar(drawing *dr, const char *text)
 static void setup_drawing(frontend *fe)
 {
     fe->cr = cairo_create(fe->image);
-    cairo_scale(fe->cr, fe->ps, fe->ps);
     cairo_set_antialias(fe->cr, CAIRO_ANTIALIAS_GRAY);
     cairo_set_line_width(fe->cr, 1.0);
     cairo_set_line_cap(fe->cr, CAIRO_LINE_CAP_SQUARE);
@@ -362,20 +549,6 @@ static void teardown_drawing(frontend *fe)
 {
     cairo_destroy(fe->cr);
     fe->cr = NULL;
-
-#ifndef USE_CAIRO_WITHOUT_PIXMAP
-    if (!fe->headless) {
-        cairo_t *cr = gdk_cairo_create(fe->pixmap);
-        cairo_set_source_surface(cr, fe->image, 0, 0);
-        cairo_rectangle(cr,
-                        fe->bbox_l - 1,
-                        fe->bbox_u - 1,
-                        fe->bbox_r - fe->bbox_l + 2,
-                        fe->bbox_d - fe->bbox_u + 2);
-        cairo_fill(cr);
-        cairo_destroy(cr);
-    }
-#endif
 }
 
 static void snaffle_colours(frontend *fe)
@@ -641,19 +814,28 @@ static void do_draw_circle(frontend *fe, int cx, int cy, int radius,
 
 static void setup_blitter(frontend *fe,  blitter *bl, int w, int h)
 {
-    bl->image = cairo_image_surface_create(CAIRO_FORMAT_RGB24, w*fe->ps, h*fe->ps);
+    /*
+     * We can't create the surface right now, because fe->image
+     * might not yet exist. So we just cache w and h and create it
+     * during the first call to blitter_save.
+     */
+    bl->image = NULL;
 }
 
 static void teardown_blitter(blitter *bl)
 {
-    cairo_surface_destroy(bl->image);
+    if (bl->image)
+        cairo_surface_destroy(bl->image);
 }
 
 static void do_blitter_save(frontend *fe, blitter *bl, int x, int y)
 {
-    cairo_t *cr = cairo_create(bl->image);
-
-    cairo_set_source_surface(cr, fe->image, -x*fe->ps, -y*fe->ps);
+    cairo_t *cr;
+    if (!bl->image)
+        bl->image = cairo_surface_create_similar(
+            fe->image, CAIRO_CONTENT_COLOR, bl->w, bl->h);
+    cr = cairo_create(bl->image);
+    cairo_set_source_surface(cr, fe->image, -x, -y);
     cairo_paint(cr);
     cairo_destroy(cr);
 }
@@ -661,10 +843,8 @@ static void do_blitter_save(frontend *fe, blitter *bl, int x, int y)
 static void do_blitter_load(frontend *fe, blitter *bl, int x, int y)
 {
     cairo_save(fe->cr);
-    cairo_translate(fe->cr, x, y);
-    cairo_scale(fe->cr, 1.0/fe->ps, 1.0/fe->ps);
 
-    cairo_set_source_surface(fe->cr, bl->image, 0, 0);
+    cairo_set_source_surface(fe->cr, bl->image, x, y);
     cairo_paint(fe->cr);
 
     cairo_restore(fe->cr);
@@ -686,23 +866,23 @@ static void wipe_and_maybe_destroy_cairo(frontend *fe, cairo_t *cr,
 
 static void setup_backing_store(frontend *fe)
 {
-#ifndef USE_CAIRO_WITHOUT_PIXMAP
     if (!fe->headless) {
-        fe->pixmap = gdk_pixmap_new(gtk_widget_get_window(fe->area),
-                                    fe->pw*fe->ps, fe->ph*fe->ps, -1);
-    } else {
-        fe->pixmap = NULL;
-    }
+#if GTK_CHECK_VERSION(2,22,0)
+        fe->image = gdk_window_create_similar_surface(
+            gtk_widget_get_window(fe->area), CAIRO_CONTENT_COLOR,
+            fe->pw, fe->ph);
+#else
+        cairo_t *tmp_cr = gdk_cairo_create(gtk_widget_get_window(fe->area));
+        fe->image = cairo_surface_create_similar(
+            cairo_get_target(tmp_cr), CAIRO_CONTENT_COLOR, fe->pw, fe->ph);
+        cairo_destroy(tmp_cr);
 #endif
-
-    fe->image = cairo_image_surface_create(CAIRO_FORMAT_RGB24,
-					   fe->pw*fe->ps, fe->ph*fe->ps);
+    } else {
+        fe->image = cairo_image_surface_create(CAIRO_FORMAT_RGB24,
+                                               fe->pw*fe->ps, fe->ph*fe->ps);
+    }
 
     wipe_and_maybe_destroy_cairo(fe, cairo_create(fe->image), true);
-#ifndef USE_CAIRO_WITHOUT_PIXMAP
-    if (!fe->headless)
-        wipe_and_maybe_destroy_cairo(fe, gdk_cairo_create(fe->pixmap), true);
-#endif
     if (!fe->headless) {
 #if GTK_CHECK_VERSION(3,22,0)
         GdkWindow *gdkwin;
@@ -732,9 +912,6 @@ static bool backing_store_ok(frontend *fe)
 static void teardown_backing_store(frontend *fe)
 {
     cairo_surface_destroy(fe->image);
-#ifndef USE_CAIRO_WITHOUT_PIXMAP
-    gdk_pixmap_unref(fe->pixmap);
-#endif
     fe->image = NULL;
 }
 
@@ -993,16 +1170,12 @@ static void teardown_backing_store(frontend *fe)
 
 #endif
 
-#ifndef USE_CAIRO_WITHOUT_PIXMAP
+#ifndef USE_CAIRO
 static void repaint_rectangle(frontend *fe, GtkWidget *widget,
 			      int x, int y, int w, int h)
 {
     GdkGC *gc = gdk_gc_new(gtk_widget_get_window(widget));
-#ifdef USE_CAIRO
-    gdk_gc_set_foreground(gc, &fe->background);
-#else
     gdk_gc_set_foreground(gc, &fe->colours[fe->backgroundindex]);
-#endif
     if (x < fe->ox) {
 	gdk_draw_rectangle(gtk_widget_get_window(widget), gc,
 			   true, x, y, fe->ox - x, h);
@@ -1284,17 +1457,11 @@ static void gtk_blitter_save(drawing *dr, blitter *bl, int x, int y)
 {
     frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
     do_blitter_save(fe, bl, x, y);
-    bl->x = x;
-    bl->y = y;
 }
 
 static void gtk_blitter_load(drawing *dr, blitter *bl, int x, int y)
 {
     frontend *fe = GET_HANDLE_AS_TYPE(dr, frontend);
-    if (x == BLITTER_FROMSAVED && y == BLITTER_FROMSAVED) {
-        x = bl->x;
-        y = bl->y;
-    }
     do_blitter_load(fe, bl, x, y);
 }
 
@@ -1314,7 +1481,7 @@ static void gtk_end_draw(drawing *dr)
     teardown_drawing(fe);
 
     if (fe->bbox_l < fe->bbox_r && fe->bbox_u < fe->bbox_d && !fe->headless) {
-#ifdef USE_CAIRO_WITHOUT_PIXMAP
+#ifdef USE_CAIRO
         gtk_widget_queue_draw_area(fe->area,
                                    fe->bbox_l - 1 + fe->ox,
                                    fe->bbox_u - 1 + fe->oy,
@@ -1570,6 +1737,11 @@ static gint key_event(GtkWidget *widget, GdkEventKey *event, gpointer data)
     return true;
 }
 
+static bool mouse_is_swapped(frontend *fe) {
+    return (fe->keybar_swap_button != NULL &&
+        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(fe->keybar_swap_button)));
+}
+
 static gint button_event(GtkWidget *widget, GdkEventButton *event,
                          gpointer data)
 {
@@ -1585,9 +1757,9 @@ static gint button_event(GtkWidget *widget, GdkEventButton *event,
     if (event->button == 2 || (event->state & GDK_SHIFT_MASK))
 	button = MIDDLE_BUTTON;
     else if (event->button == 3 || (event->state & GDK_MOD1_MASK))
-	button = RIGHT_BUTTON;
+	button = mouse_is_swapped(fe) ? LEFT_BUTTON : RIGHT_BUTTON;
     else if (event->button == 1)
-	button = LEFT_BUTTON;
+	button = mouse_is_swapped(fe) ? RIGHT_BUTTON : LEFT_BUTTON;
     else if (event->button == 8 && event->type == GDK_BUTTON_PRESS)
         button = 'u';
     else if (event->button == 9 && event->type == GDK_BUTTON_PRESS)
@@ -1617,9 +1789,9 @@ static gint motion_event(GtkWidget *widget, GdkEventMotion *event,
     if (event->state & (GDK_BUTTON2_MASK | GDK_SHIFT_MASK))
 	button = MIDDLE_DRAG;
     else if (event->state & GDK_BUTTON1_MASK)
-	button = LEFT_DRAG;
+	button = mouse_is_swapped(fe) ? RIGHT_DRAG : LEFT_DRAG;
     else if (event->state & GDK_BUTTON3_MASK)
-	button = RIGHT_DRAG;
+	button = mouse_is_swapped(fe) ? LEFT_DRAG : RIGHT_DRAG;
     else
 	return false;		       /* don't even know what button! */
 
@@ -1635,27 +1807,198 @@ static gint motion_event(GtkWidget *widget, GdkEventMotion *event,
     return true;
 }
 
+#if GTK_CHECK_VERSION(3,14,0)
+static gint touch_event(GtkWidget *widget, GdkEventTouch *event,
+                         gpointer data)
+{
+    frontend *fe = (frontend *)data;
+
+    if (!backing_store_ok(fe))
+        return true;
+
+    if (event->type == GDK_TOUCH_BEGIN) {
+        if (fe->touch_sequence)
+            return true;
+        fe->touch_sequence = event->sequence;
+        fe->touch_ox = event->x;
+        fe->touch_oy = event->y;
+        fe->touch_button = 0;
+        return true;
+    }
+
+    if (event->sequence != fe->touch_sequence)
+        return true;
+
+    if (event->type == GDK_TOUCH_UPDATE) {
+        if (!fe->touch_button)
+            return true;
+
+        if (midend_process_key(fe->me, event->x - fe->ox, event->y - fe->oy,
+                               fe->touch_button + (LEFT_DRAG - LEFT_BUTTON))
+            == PKR_QUIT)
+            gtk_widget_destroy(fe->window);
+        return true;
+    }
+
+    if (event->type == GDK_TOUCH_END && !fe->touch_button) {
+        fe->touch_button = (mouse_is_swapped(fe) ? RIGHT_BUTTON : LEFT_BUTTON)
+            | MOD_STYLUS;
+        if (midend_process_key(fe->me, event->x - fe->ox, event->y - fe->oy,
+                               fe->touch_button) == PKR_QUIT) {
+            gtk_widget_destroy(fe->window);
+            return true;
+        }
+    }
+
+    if (fe->touch_button) {
+        if (midend_process_key(fe->me, event->x - fe->ox, event->y - fe->oy,
+                               fe->touch_button + (LEFT_RELEASE - LEFT_BUTTON))
+            == PKR_QUIT)
+            gtk_widget_destroy(fe->window);
+        fe->touch_sequence = NULL;
+        fe->touch_button = 0;
+    }
+
+    return true;
+}
+
+static void long_press_pressed(GtkGestureLongPress *gesture, double x, double y,
+                               gpointer data)
+{
+    frontend *fe = (frontend *)data;
+    if (!fe->touch_sequence)
+        return;
+
+    fe->touch_button = (mouse_is_swapped(fe) ? LEFT_BUTTON : RIGHT_BUTTON)
+        | MOD_STYLUS;
+    if (midend_process_key(fe->me, fe->touch_ox - fe->ox, fe->touch_oy - fe->oy,
+                           fe->touch_button) == PKR_QUIT)
+        gtk_widget_destroy(fe->window);
+}
+
+static void long_press_cancelled(GtkGestureLongPress *gesture, gpointer data) {
+    frontend *fe = (frontend *)data;
+    if (!fe->touch_sequence)
+        return;
+
+    fe->touch_button = (mouse_is_swapped(fe) ? RIGHT_BUTTON : LEFT_BUTTON)
+        | MOD_STYLUS;
+    if (midend_process_key(fe->me, fe->touch_ox - fe->ox, fe->touch_oy - fe->oy,
+                           fe->touch_button) == PKR_QUIT)
+        gtk_widget_destroy(fe->window);
+}
+#endif
+
+static bool want_keybar(frontend *fe)
+{
+#ifdef STYLUS_BASED
+    return true;
+#elif GTK_CHECK_VERSION(3,20,0)
+    GdkDisplay *display = gdk_screen_get_display(
+        gtk_window_get_screen(GTK_WINDOW(fe->window)));
+    GList *seats = gdk_display_list_seats(display);
+    GList *seat;
+    bool touch = false;
+
+    for (seat = seats; seat != NULL; seat = seat->next) {
+        if (gdk_seat_get_capabilities(GDK_SEAT(seat->data))
+            & GDK_SEAT_CAPABILITY_TOUCH) {
+            touch = true;
+            break;
+        }
+    }
+    g_list_free(seats);
+    return touch;
+#else
+    return false;
+#endif
+}
+
+static void keybar_button_clicked(GtkButton *button, gpointer data)
+{
+    frontend *fe = (frontend *)data;
+
+    int keyval = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(button), "user-data"));
+    if (midend_process_key(fe->me, 0, 0, keyval) == PKR_QUIT)
+        gtk_widget_destroy(fe->window);
+}
+
+static GtkWidget *make_keybar_button(frontend *fe, const char *label, const char *icon, int keyval)
+{
+    GtkWidget *button = gtk_button_new_with_label(icon ? NULL : label);
+#if GTK_CHECK_VERSION(3,20,0)
+    GtkStyleContext *context = gtk_widget_get_style_context(button);
+    gtk_style_context_remove_class(context, "text-button");
+    gtk_style_context_add_class(context, "image-button");
+#endif
+    if (icon != NULL)
+        gtk_button_set_image(GTK_BUTTON(button), gtk_image_new_from_icon_name(
+            icon, GTK_ICON_SIZE_BUTTON));
+    gtk_widget_set_focus_on_click(button, false);
+    gtk_widget_show(button);
+    g_object_set_data(G_OBJECT(button), "user-data", GINT_TO_POINTER(keyval));
+    g_signal_connect(G_OBJECT(button), "clicked",
+                     G_CALLBACK(keybar_button_clicked), fe);
+    return button;
+}
+
+static void populate_keybar(frontend *fe)
+{
+    int i, n;
+    key_label *keys;
+    GList *children, *child;
+    GtkWidget *button;
+    bool toggled = false;
+
+    if (fe->keybar_swap_button != NULL) {
+        toggled = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(fe->keybar_swap_button));
+        fe->keybar_swap_button = NULL;
+    }
+
+    children = gtk_container_get_children(GTK_CONTAINER(fe->keybar));
+    for (child = children; child != NULL; child = child->next)
+        gtk_widget_destroy(GTK_WIDGET(child->data));
+    g_list_free(children);
+
+    if (thegame.flags & (REQUIRE_RBUTTON | STYLUS_SUPPORT)) {
+        button = gtk_toggle_button_new();
+        gtk_button_set_image(GTK_BUTTON(button), gtk_image_new_from_icon_name(
+            "input-mouse-symbolic", GTK_ICON_SIZE_BUTTON));
+        gtk_widget_set_focus_on_click(button, false);
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), toggled);
+        gtk_widget_show(button);
+        gtk_container_add(GTK_CONTAINER(fe->keybar), button);
+        fe->keybar_swap_button = button;
+    }
+
+    button = make_keybar_button(fe, "Undo", "edit-undo-symbolic", UI_UNDO);
+    gtk_container_add(GTK_CONTAINER(fe->keybar), button);
+
+    button = make_keybar_button(fe, "Redo", "edit-redo-symbolic", UI_REDO);
+    gtk_container_add(GTK_CONTAINER(fe->keybar), button);
+
+    keys = midend_request_keys(fe->me, &n);
+    for (i = 0; i < n; ++i) {
+        if (keys[i].button == '\b')
+            button = make_keybar_button(fe,
+                "Clear", "edit-clear-symbolic", '\b');
+        else
+            button = make_keybar_button(fe,
+                keys[i].label, NULL, keys[i].button);
+        gtk_container_add(GTK_CONTAINER(fe->keybar), button);
+    }
+    free_keys(keys, n);
+}
+
 #if GTK_CHECK_VERSION(3,0,0)
 static gint draw_area(GtkWidget *widget, cairo_t *cr, gpointer data)
 {
     frontend *fe = (frontend *)data;
-    GdkRectangle dirtyrect;
 
-    cairo_surface_t *target_surface = cairo_get_target(cr);
-    cairo_matrix_t m;
-    cairo_get_matrix(cr, &m);
-    double orig_sx, orig_sy;
-    cairo_surface_get_device_scale(target_surface, &orig_sx, &orig_sy);
-    cairo_surface_set_device_scale(target_surface, 1.0, 1.0);
-    cairo_translate(cr, m.x0 * (orig_sx - 1.0), m.y0 * (orig_sy - 1.0));
-
-    gdk_cairo_get_clip_rectangle(cr, &dirtyrect);
-    cairo_set_source_surface(cr, fe->image, fe->ox*fe->ps, fe->oy*fe->ps);
-    cairo_rectangle(cr, dirtyrect.x, dirtyrect.y,
-                    dirtyrect.width, dirtyrect.height);
-    cairo_fill(cr);
-
-    cairo_surface_set_device_scale(target_surface, orig_sx, orig_sy);
+    cairo_set_source_surface(cr, fe->image, fe->ox, fe->oy);
+    cairo_paint(cr);
+    cairo_surface_flush(cairo_get_target(cr));
 
     return true;
 }
@@ -1666,7 +2009,7 @@ static gint expose_area(GtkWidget *widget, GdkEventExpose *event,
     frontend *fe = (frontend *)data;
 
     if (backing_store_ok(fe)) {
-#ifdef USE_CAIRO_WITHOUT_PIXMAP
+#ifdef USE_CAIRO
         cairo_t *cr = gdk_cairo_create(gtk_widget_get_window(widget));
         cairo_set_source_surface(cr, fe->image, fe->ox, fe->oy);
         cairo_rectangle(cr, event->area.x, event->area.y,
@@ -1752,6 +2095,22 @@ static void window_size_alloc(GtkWidget *widget, GtkAllocation *allocation,
 }
 #endif
 
+#ifdef USE_GDK_FRAME_CLOCK
+static gboolean timer_func(GtkWidget* widget, GdkFrameClock* frame_clock,
+                           gpointer data)
+{
+    frontend *fe = (frontend *)data;
+
+    if (fe->timer_active) {
+        gint64 now = gdk_frame_clock_get_frame_time(frame_clock);
+        float elapsed = (now - fe->last_time) * 0.000001F;
+        midend_timer(fe->me, elapsed);	/* may clear timer_active */
+        fe->last_time = now;
+    }
+
+    return fe->timer_active ? G_SOURCE_CONTINUE : G_SOURCE_REMOVE;
+}
+#else
 static gint timer_func(gpointer data)
 {
     frontend *fe = (frontend *)data;
@@ -1768,23 +2127,35 @@ static gint timer_func(gpointer data)
 
     return fe->timer_active;
 }
+#endif
 
 void deactivate_timer(frontend *fe)
 {
-    if (!fe)
+    if (!fe || !fe->window)
 	return;			       /* can happen due to --generate */
-    if (fe->timer_active)
+    if (fe->timer_active) {
+#ifdef USE_GDK_FRAME_CLOCK
+        gtk_widget_remove_tick_callback(fe->window, fe->timer_id);
+#else
         g_source_remove(fe->timer_id);
+#endif
+    }
     fe->timer_active = false;
 }
 
 void activate_timer(frontend *fe)
 {
-    if (!fe)
+    if (!fe || !fe->window)
 	return;			       /* can happen due to --generate */
     if (!fe->timer_active) {
+#ifdef USE_GDK_FRAME_CLOCK
+        fe->timer_id = gtk_widget_add_tick_callback(fe->window, timer_func, fe,
+                                                    NULL);
+        fe->last_time = g_get_monotonic_time();
+#else
         fe->timer_id = g_timeout_add(20, timer_func, fe);
 	gettimeofday(&fe->last_time, NULL);
+#endif
     }
     fe->timer_active = true;
 }
@@ -2299,6 +2670,9 @@ static void changed_preset(frontend *fe)
         bool enabled = midend_can_format_as_text_now(fe->me);
 	gtk_widget_set_sensitive(fe->copy_menu_item, enabled);
     }
+
+    if (fe->keybar != NULL)
+        populate_keybar(fe);
 }
 
 #if !GTK_CHECK_VERSION(3,0,0)
@@ -2369,7 +2743,7 @@ static gint configure_window(GtkWidget *widget,
 }
 
 #if GTK_CHECK_VERSION(3,0,0)
-static int window_extra_height(frontend *fe)
+static int window_extra_height(frontend *fe, int width)
 {
     int ret = 0;
     if (fe->menubar) {
@@ -2382,6 +2756,12 @@ static int window_extra_height(frontend *fe)
         gtk_widget_get_preferred_size(fe->statusbar, &req, NULL);
         ret += req.height;
     }
+    if (fe->keybar && width > 0) {
+        int height;
+        gtk_widget_get_preferred_height_for_width(fe->keybar,
+            width, &height, NULL);
+        ret += height;
+    }
     return ret;
 }
 #endif
@@ -2393,7 +2773,7 @@ static void resize_fe(frontend *fe)
     get_size(fe, &x, &y);
 
 #if GTK_CHECK_VERSION(3,0,0)
-    gtk_window_resize(GTK_WINDOW(fe->window), x, y + window_extra_height(fe));
+    gtk_window_resize(GTK_WINDOW(fe->window), x, y + window_extra_height(fe, x));
     fe->awaiting_resize_ack = true;
 #else
     fe->drawing_area_shrink_pending = false;
@@ -2444,7 +2824,8 @@ static void set_selection(frontend *fe, GdkAtom selection)
      * COMPOUND_TEXT or UTF8_STRING.
      */
 
-    if (gtk_selection_owner_set(fe->window, selection, CurrentTime)) {
+    if (gtk_selection_owner_set(fe->window, selection,
+                                gtk_get_current_event_time())) {
 	gtk_selection_clear_targets(fe->window, selection);
 	gtk_selection_add_target(fe->window, selection,
 				 GDK_SELECTION_TYPE_STRING, 1);
@@ -3424,7 +3805,7 @@ static frontend *new_window(
 #ifdef USE_PRINTING
     frontend *print_fe = NULL;
 #endif
-    GtkBox *vbox, *hbox;
+    GtkBox *vbox;
     GtkWidget *menu, *menuitem;
     GList *iconlist;
     int x, y, n;
@@ -3595,12 +3976,8 @@ static frontend *new_window(
      * gtk_window_add_accel_group; see menu_key_event
      */
 
-    hbox = GTK_BOX(gtk_hbox_new(false, 0));
-    gtk_box_pack_start(vbox, GTK_WIDGET(hbox), false, false, 0);
-    gtk_widget_show(GTK_WIDGET(hbox));
-
     fe->menubar = gtk_menu_bar_new();
-    gtk_box_pack_start(hbox, fe->menubar, true, true, 0);
+    gtk_box_pack_start(vbox, fe->menubar, false, false, 0);
     gtk_widget_show(fe->menubar);
 
     menuitem = gtk_menu_item_new_with_mnemonic("_Game");
@@ -3688,11 +4065,9 @@ static frontend *new_window(
         gtk_widget_show(menuitem);
     }
 #endif
-#ifndef STYLUS_BASED
     add_menu_separator(GTK_CONTAINER(menu));
     add_menu_ui_item(fe, GTK_CONTAINER(menu), "Undo", UI_UNDO, 'u', 0);
     add_menu_ui_item(fe, GTK_CONTAINER(menu), "Redo", UI_REDO, 'r', 0);
-#endif
     if (thegame.can_format_as_text_ever) {
 	add_menu_separator(GTK_CONTAINER(menu));
 	menuitem = gtk_menu_item_new_with_label("Copy");
@@ -3757,45 +4132,23 @@ static frontend *new_window(
                      G_CALLBACK(menu_about_event), fe);
     gtk_widget_show(menuitem);
 
-#ifdef STYLUS_BASED
-    menuitem=gtk_button_new_with_mnemonic("_Redo");
-    g_object_set_data(G_OBJECT(menuitem), "user-data",
-                      GINT_TO_POINTER(UI_REDO));
-    g_signal_connect(G_OBJECT(menuitem), "clicked",
-                     G_CALLBACK(menu_key_event), fe);
-    gtk_box_pack_end(hbox, menuitem, false, false, 0);
-    gtk_widget_show(menuitem);
-
-    menuitem=gtk_button_new_with_mnemonic("_Undo");
-    g_object_set_data(G_OBJECT(menuitem), "user-data",
-                      GINT_TO_POINTER(UI_UNDO));
-    g_signal_connect(G_OBJECT(menuitem), "clicked",
-                     G_CALLBACK(menu_key_event), fe);
-    gtk_box_pack_end(hbox, menuitem, false, false, 0);
-    gtk_widget_show(menuitem);
-
-    if (thegame.flags & REQUIRE_NUMPAD) {
-	hbox = GTK_BOX(gtk_hbox_new(false, 0));
-	gtk_box_pack_start(vbox, GTK_WIDGET(hbox), false, false, 0);
-	gtk_widget_show(GTK_WIDGET(hbox));
-
-	*((int*)errbuf)=0;
-	errbuf[1]='\0';
-	for(errbuf[0]='0';errbuf[0]<='9';errbuf[0]++) {
-	    menuitem=gtk_button_new_with_label(errbuf);
-	    g_object_set_data(G_OBJECT(menuitem), "user-data",
-                              GINT_TO_POINTER((int)(errbuf[0])));
-	    g_signal_connect(G_OBJECT(menuitem), "clicked",
-                             G_CALLBACK(menu_key_event), fe);
-	    gtk_box_pack_start(hbox, menuitem, true, true, 0);
-	    gtk_widget_show(menuitem);
-	}
-    }
-#endif /* STYLUS_BASED */
-
     changed_preset(fe);
 
     snaffle_colours(fe);
+
+    fe->keybar_swap_button = NULL;
+    if (want_keybar(fe)) {
+#if GTK_CHECK_VERSION(3,0,0)
+        fe->keybar = wrap_box_new();
+#else
+        fe->keybar = gtk_hbox_new(false, 0);
+#endif
+        gtk_widget_show(fe->keybar);
+        gtk_box_pack_end(vbox, fe->keybar, false, false, 0);
+
+        populate_keybar(fe);
+    } else
+        fe->keybar = NULL;
 
     if (midend_wants_statusbar(fe->me)) {
 	GtkWidget *viewport;
@@ -3829,7 +4182,7 @@ static frontend *new_window(
         GdkGeometry geom;
         geom.base_width = 0;
 #if GTK_CHECK_VERSION(3,0,0)
-        geom.base_height = window_extra_height(fe);
+        geom.base_height = window_extra_height(fe, 0);
         gtk_window_set_geometry_hints(GTK_WINDOW(fe->window), NULL,
                                       &geom, GDK_HINT_BASE_SIZE);
 #else
@@ -3843,7 +4196,7 @@ static frontend *new_window(
     get_size(fe, &x, &y);
 #if GTK_CHECK_VERSION(3,0,0)
     gtk_window_set_default_size(GTK_WINDOW(fe->window),
-                                x, y + window_extra_height(fe));
+                                x, y + window_extra_height(fe, x));
 #else
     fe->drawing_area_shrink_pending = false;
     gtk_drawing_area_size(GTK_DRAWING_AREA(fe->area), x, y);
@@ -3857,6 +4210,20 @@ static frontend *new_window(
 
     fe->paste_data = NULL;
     fe->paste_data_len = 0;
+
+#if GTK_CHECK_VERSION(3,14,0)
+    fe->long_press = gtk_gesture_long_press_new(fe->area);
+    gtk_gesture_single_set_touch_only(GTK_GESTURE_SINGLE(fe->long_press), true);
+    gtk_event_controller_set_propagation_phase(GTK_EVENT_CONTROLLER(fe->long_press), GTK_PHASE_CAPTURE);
+    fe->touch_sequence = NULL;
+    fe->touch_button = 0;
+    g_signal_connect(G_OBJECT(fe->area), "touch_event",
+                     G_CALLBACK(touch_event), fe);
+    g_signal_connect(G_OBJECT(fe->long_press), "pressed",
+                     G_CALLBACK(long_press_pressed), fe);
+    g_signal_connect(G_OBJECT(fe->long_press), "cancelled",
+                     G_CALLBACK(long_press_cancelled), fe);
+#endif
 
     g_signal_connect(G_OBJECT(fe->window), "destroy",
                      G_CALLBACK(destroy), fe);
@@ -3891,6 +4258,9 @@ static frontend *new_window(
 #endif
 
     gtk_widget_add_events(GTK_WIDGET(fe->area),
+#if GTK_CHECK_VERSION(3,14,0)
+                          GDK_TOUCH_MASK |
+#endif
                           GDK_BUTTON_PRESS_MASK |
                           GDK_BUTTON_RELEASE_MASK |
 			  GDK_BUTTON_MOTION_MASK |

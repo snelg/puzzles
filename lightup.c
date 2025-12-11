@@ -1960,6 +1960,9 @@ static char *interpret_move(const game_state *state, game_ui *ui,
     int cx = -1, cy = -1;
     unsigned int flags;
     char buf[80], *nullret = MOVE_NO_EFFECT, *empty = MOVE_UI_UPDATE, c;
+    bool stylus = button & MOD_STYLUS;
+
+    button = STRIP_BUTTON_MODIFIERS(button);
 
     if (button == LEFT_BUTTON || button == RIGHT_BUTTON) {
         if (ui->cur_visible)
@@ -1994,19 +1997,19 @@ static char *interpret_move(const game_state *state, game_ui *ui,
         if (flags & F_BLACK)
             return nullret;
         if (action == FLIP_LIGHT) {
-#ifdef STYLUS_BASED
-            if (flags & F_IMPOSSIBLE || flags & F_LIGHT) c = 'I'; else c = 'L';
-#else
-            if (flags & F_IMPOSSIBLE) return nullret;
-            c = 'L';
-#endif
+            if (stylus) {
+                if (flags & F_IMPOSSIBLE || flags & F_LIGHT) c = 'I'; else c = 'L';
+            } else {
+                if (flags & F_IMPOSSIBLE) return nullret;
+                c = 'L';
+            }
         } else {
-#ifdef STYLUS_BASED
-            if (flags & F_IMPOSSIBLE || flags & F_LIGHT) c = 'L'; else c = 'I';
-#else
-            if (flags & F_LIGHT) return nullret;
-            c = 'I';
-#endif
+            if (stylus) {
+                if (flags & F_IMPOSSIBLE || flags & F_LIGHT) c = 'L'; else c = 'I';
+            } else {
+                if (flags & F_LIGHT) return nullret;
+                c = 'I';
+            }
         }
         sprintf(buf, "%c%d,%d", (int)c, cx, cy);
         break;
@@ -2375,6 +2378,7 @@ const struct game thegame = {
     new_game_desc,
     validate_desc,
     new_game,
+    NULL, /* set_public_desc */
     dup_game,
     free_game,
     true, solve_game,
@@ -2401,7 +2405,7 @@ const struct game thegame = {
     true, false, game_print_size, game_print,
     false,			       /* wants_statusbar */
     false, NULL,                       /* timing_state */
-    0,				       /* flags */
+    STYLUS_SUPPORT,		       /* flags */
 };
 
 #ifdef STANDALONE_SOLVER

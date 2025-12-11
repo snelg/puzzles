@@ -2032,6 +2032,7 @@ const struct game thegame = {
     new_game_desc,
     validate_desc,
     new_game,
+    NULL, /* set_public_desc */
     dup_game,
     free_game,
 #ifndef EDITOR
@@ -2063,5 +2064,9 @@ const struct game thegame = {
     false, false, NULL, NULL,          /* print_size, print */
     false,			       /* wants_statusbar */
     false, NULL,                       /* timing_state */
-    SOLVE_ANIMATES,		       /* flags */
+#ifdef EDITOR
+    SOLVE_ANIMATES | REQUIRE_RBUTTON,  /* flags */
+#else
+    SOLVE_ANIMATES,                    /* flags */
+#endif
 };

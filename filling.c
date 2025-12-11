@@ -1302,17 +1302,17 @@ static const char *validate_desc(const game_params *params, const char *desc)
 static key_label *game_request_keys(const game_params *params, int *nkeys)
 {
     int i;
-    key_label *keys = snewn(11, key_label);
+    key_label *keys = snewn(10, key_label);
 
-    *nkeys = 11;
+    *nkeys = 10;
 
-    for(i = 0; i < 10; ++i)
+    for(i = 0; i < 9; ++i)
     {
-	keys[i].button = '0' + i;
+	keys[i].button = '1' + i;
 	keys[i].label = NULL;
     }
-    keys[10].button = '\b';
-    keys[10].label = NULL;
+    keys[9].button = '\b';
+    keys[9].label = NULL;
 
     return keys;
 }
@@ -1534,13 +1534,15 @@ static char *interpret_move(const game_state *state, game_ui *ui,
 	return MOVE_UI_UPDATE;
     }
 
-    if (button == '\b' || button == 27) {
+    if (button == 27) {   /* Esc just cancels the current selection */
 	sfree(ui->sel);
 	ui->sel = NULL;
 	ui->keydragging = false;
 	return MOVE_UI_UPDATE;
     }
 
+    if (button == '\b')
+        button = '0'; /* Backspace clears the current selection, like '0' */
     if (button < '0' || button > '9') return MOVE_UNUSED;
     button -= '0';
     if (button > (w == 2 && h == 2 ? 3 : max(w, h))) return MOVE_UNUSED;
@@ -2165,6 +2167,7 @@ const struct game thegame = {
     new_game_desc,
     validate_desc,
     new_game,
+    NULL, /* set_public_desc */
     dup_game,
     free_game,
     true, solve_game,
