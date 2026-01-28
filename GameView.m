@@ -944,10 +944,6 @@ static void ios_blitter_load(void *handle, blitter *bl, int x, int y)
 {
     frontend *fe = (frontend *)handle;
     GameView *gv = (__bridge GameView *)(fe->gv);
-    if (x == BLITTER_FROMSAVED && y == BLITTER_FROMSAVED) {
-        x = bl->x;
-        y = bl->y;
-    }
     x += bl->ox;
     y += bl->oy;
     CGContextDrawImage(gv.bitmap, CGRectMake(x, y, CGImageGetWidth(bl->img), CGImageGetHeight(bl->img)), bl->img);
