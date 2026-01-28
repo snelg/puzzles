@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(puzzles
   LANGUAGES C)
 
+set(PUZZLES_ROOT_DIR "${CMAKE_CURRENT_LIST_DIR}")
 include(cmake/setup.cmake)
 
 add_library(core_obj OBJECT
@@ -11,8 +12,8 @@ add_library(core_obj OBJECT
   penrose.c penrose-legacy.c ps.c random.c sort.c tdq.c tree234.c
   version.c
   ${platform_common_sources})
-add_library(core $<TARGET_OBJECTS:core_obj>)
-add_library(common $<TARGET_OBJECTS:core_obj> hat.c spectre.c)
+add_library(core STATIC $<TARGET_OBJECTS:core_obj>)
+add_library(common STATIC $<TARGET_OBJECTS:core_obj> hat.c spectre.c)
 
 cliprogram(polygon-test draw-poly.c
   SDL2_LIB COMPILE_DEFINITIONS STANDALONE_POLYGON)
@@ -217,7 +218,7 @@ puzzle(pearl
   OBJECTIVE "Draw a single closed loop, given clues about corner and \
 straight squares.")
 solver(pearl)
-cliprogram(pearlbench pearl.c COMPILE_DEFINITIONS STANDALONE_SOLVER)
+cliprogram(pearlbench pearl.c COMPILE_DEFINITIONS STANDALONE_SOAK_TEST)
 
 puzzle(pegs
   DISPLAYNAME "Pegs"
